@@ -16,8 +16,7 @@ export default function Home() {
           Succes Pokemon Heartgold & Soulsilver
         </h1>
         <p className="max-w-2xl text-pretty text-base text-mii-slate sm:text-lg">
-          Coche chaque etape iconique inspiree de Pokemon Heartgold & Soulsilver. Appuie sur une carte pour valider un succes et garde ta progression
-          sauvegardee localement.
+          Challenge run des succès créés par Josplay, pour Pokémon Heartgold & Soulsilver. Chaque succès peut être validé en respectant les conditions indiquées.
         </p>
       </section>
       <AchievementsGrid achievements={achievements} />
