@@ -223,14 +223,14 @@ export const SyncButton: React.FC<SyncButtonProps> = ({ completedIds }) => {
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
-                  className="flex-1 rounded-xl border-2 border-mii-silver bg-white px-4 py-2 font-semibold text-mii-slate transition-all hover:bg-mii-silver/50"
+                  className="flex-1 rounded-xl border-2 border-mii-silver bg-white px-4 py-2.5 font-semibold text-mii-slate transition-all hover:bg-mii-silver/50"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 rounded-xl bg-mii-sky-500 px-4 py-2 font-semibold text-white transition-all hover:bg-mii-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="flex-1 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 px-4 py-2.5 font-bold text-white shadow-lg transition-all hover:from-purple-600 hover:to-pink-600 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {loading ? "Synchronisation..." : "Synchroniser"}
                 </button>
