@@ -10,7 +10,7 @@ export default function Home() {
       <section className="flex flex-col gap-4 text-left sm:gap-5">
         <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-sm font-medium text-mii-slate shadow-mii backdrop-blur-gloss ring-1 ring-mii-silver/70">
           <span className="size-2 rounded-full bg-mii-sky-400" aria-hidden />
-          Suivi ludique
+          Challenge run
         </span>
         <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-mii-ink sm:text-5xl">
           Succes Pokemon Heartgold & Soulsilver
