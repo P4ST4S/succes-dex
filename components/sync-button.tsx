@@ -73,7 +73,7 @@ export const SyncButton: React.FC<SyncButtonProps> = ({ completedIds }) => {
       });
 
       // Afficher le toast de succès
-      setToastMessage(`✓ Synchronisé ! ${data.synced} succès`);
+      setToastMessage(`Synchronisé ! ${data.synced} succès`);
       setShowToast(true);
 
       setTimeout(() => {
