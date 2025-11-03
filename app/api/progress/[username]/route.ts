@@ -26,7 +26,7 @@ export async function GET(
 
     return NextResponse.json({
       username: user.username,
-      completedIds: user.progress.map((p) => p.achievementId),
+      completedIds: user.progress.map((p: { achievementId: string }) => p.achievementId),
       lastUpdated: user.updatedAt,
     });
   } catch (error) {
