@@ -1,10 +1,17 @@
+"use client";
+
 import { AchievementsGrid } from "@/components/achievements-grid";
+import { SyncButton } from "@/components/sync-button";
 import type { Achievement } from "@/types/achievement";
 import successes from "@/public/successes.json";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const achievements = successes as Achievement[];
+const STORAGE_KEY = "mii-achievements::completed";
 
 export default function Home() {
+  const { value: completedIds } = useLocalStorage<string[]>(STORAGE_KEY, []);
+
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-12 px-4 pb-16 pt-24 sm:px-8 lg:px-12">
       <section className="flex flex-col gap-4 text-left sm:gap-5">
@@ -27,9 +34,12 @@ export default function Home() {
         <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-mii-ink sm:text-5xl">
           Succes Pokemon Heartgold & Soulsilver
         </h1>
-        <p className="max-w-2xl text-pretty text-base text-mii-slate sm:text-lg">
-          Challenge run des succès créés par Josplay, pour Pokémon Heartgold & Soulsilver. Chaque succès peut être validé en respectant les conditions indiquées.
-        </p>
+        <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="max-w-2xl text-pretty text-base text-mii-slate sm:text-lg">
+            Challenge run des succès créés par Josplay, pour Pokémon Heartgold & Soulsilver. Chaque succès peut être validé en respectant les conditions indiquées.
+          </p>
+          <SyncButton completedIds={completedIds} />
+        </div>
       </section>
       <AchievementsGrid achievements={achievements} />
     </main>

@@ -10,6 +10,10 @@ export async function POST(request: NextRequest) {
     }
 
     const base64Credentials = authHeader.split(" ")[1];
+    if (!base64Credentials) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const credentials = Buffer.from(base64Credentials, "base64").toString(
       "utf-8"
     );
