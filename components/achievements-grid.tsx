@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { AchievementCard } from "@/components/achievement-card";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import type { Achievement } from "@/types/achievement";
+import type { Achievement, AchievementCategory } from "@/types/achievement";
 
 const STORAGE_KEY = "mii-achievements::completed";
 
@@ -14,6 +14,7 @@ interface AchievementsGridProps {
 }
 
 type FilterStatus = "all" | "completed" | "incomplete";
+type CategoryFilter = "all" | AchievementCategory;
 
 export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
   achievements,
@@ -22,6 +23,7 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<FilterStatus>("all");
+  const [filterCategory, setFilterCategory] = useState<CategoryFilter>("all");
   const [readOnlyCompletedIds, setReadOnlyCompletedIds] = useState<string[]>(initialCompletedIds);
   const {
     value: localCompletedIds,
@@ -77,8 +79,16 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
       );
     }
 
-    // En mode lecture seule, trier les succès validés en premier
+    // Filtrer par catégorie
+    if (filterCategory !== "all") {
+      filtered = filtered.filter(
+        (achievement) => achievement.category === filterCategory
+      );
+    }
+
+    // Trier les succès
     if (readOnly) {
+      // En mode lecture seule, trier d'abord par statut (validés en premier)
       filtered = [...filtered].sort((a, b) => {
         const aCompleted = completedSet.has(a.id);
         const bCompleted = completedSet.has(b.id);
@@ -86,10 +96,24 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
         if (!aCompleted && bCompleted) return 1;
         return 0;
       });
+    } else if (filterCategory === "all") {
+      // Si on affiche toutes les catégories, grouper par catégorie
+      const categoryOrder: AchievementCategory[] = [
+        "Intrigue",
+        "Pokémon",
+        "Quêtes",
+        "Collection",
+        "Divers",
+      ];
+
+      filtered = [...filtered].sort((a, b) => {
+        const categoryComparison = categoryOrder.indexOf(a.category) - categoryOrder.indexOf(b.category);
+        return categoryComparison;
+      });
     }
 
     return filtered;
-  }, [achievements, searchQuery, filterStatus, completedSet, readOnly]);
+  }, [achievements, searchQuery, filterStatus, filterCategory, completedSet, readOnly]);
 
   const completionRatio = useMemo(() => {
     if (totalCount === 0) {
@@ -149,36 +173,10 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
         </div>
       </header>
 
-      <div className="flex flex-col gap-3 sm:flex-row">
-        <div className="relative flex-1">
-          <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-5 text-mii-slate/60"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <path d="m21 21-4.35-4.35" />
-            </svg>
-          </div>
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Rechercher un succes..."
-            className="w-full rounded-2xl border-2 border-mii-silver bg-white px-12 py-3 text-base text-mii-ink placeholder-mii-slate/50 transition-all duration-200 focus:border-mii-sky-400 focus:outline-none focus:ring-4 focus:ring-mii-sky-400/20"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-mii-slate/60 transition-colors hover:bg-mii-silver/50 hover:text-mii-ink"
-            >
+      <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="relative flex-1">
+            <div className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -187,52 +185,149 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="size-5"
+                className="size-5 text-mii-slate/60"
               >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
               </svg>
-            </button>
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Rechercher un succes..."
+              className="w-full rounded-2xl border-2 border-mii-silver bg-white px-12 py-3 text-base text-mii-ink placeholder-mii-slate/50 transition-all duration-200 focus:border-mii-sky-400 focus:outline-none focus:ring-4 focus:ring-mii-sky-400/20"
+            />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-mii-slate/60 transition-colors hover:bg-mii-silver/50 hover:text-mii-ink"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="size-5"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            )}
+          </div>
+
+          {readOnly && (
+            <div className="flex gap-2 rounded-2xl border-2 border-mii-silver bg-white p-1">
+              <button
+                type="button"
+                onClick={() => setFilterStatus("all")}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+                  filterStatus === "all"
+                    ? "bg-blue-600 text-white shadow-sm"
+                    : "text-mii-slate hover:bg-mii-silver/50"
+                }`}
+              >
+                Tous
+              </button>
+              <button
+                type="button"
+                onClick={() => setFilterStatus("completed")}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+                  filterStatus === "completed"
+                    ? "bg-green-600 text-white shadow-sm"
+                    : "text-mii-slate hover:bg-mii-silver/50"
+                }`}
+              >
+                Valides
+              </button>
+              <button
+                type="button"
+                onClick={() => setFilterStatus("incomplete")}
+                className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+                  filterStatus === "incomplete"
+                    ? "bg-gray-600 text-white shadow-sm"
+                    : "text-mii-slate hover:bg-mii-silver/50"
+                }`}
+              >
+                Non valides
+              </button>
+            </div>
           )}
         </div>
 
-        {readOnly && (
-          <div className="flex gap-2 rounded-2xl border-2 border-mii-silver bg-white p-1">
-            <button
-              type="button"
-              onClick={() => setFilterStatus("all")}
-              className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
-                filterStatus === "all"
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-mii-slate hover:bg-mii-silver/50"
-              }`}
-            >
-              Tous
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterStatus("completed")}
-              className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
-                filterStatus === "completed"
-                  ? "bg-green-600 text-white shadow-sm"
-                  : "text-mii-slate hover:bg-mii-silver/50"
-              }`}
-            >
-              Valides
-            </button>
-            <button
-              type="button"
-              onClick={() => setFilterStatus("incomplete")}
-              className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
-                filterStatus === "incomplete"
-                  ? "bg-gray-600 text-white shadow-sm"
-                  : "text-mii-slate hover:bg-mii-silver/50"
-              }`}
-            >
-              Non valides
-            </button>
-          </div>
-        )}
+        <div className="flex gap-2 overflow-x-auto rounded-2xl border-2 border-mii-silver bg-white p-1">
+          <button
+            type="button"
+            onClick={() => setFilterCategory("all")}
+            className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+              filterCategory === "all"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-mii-slate hover:bg-mii-silver/50"
+            }`}
+          >
+            Toutes categories
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterCategory("Intrigue")}
+            className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+              filterCategory === "Intrigue"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-mii-slate hover:bg-mii-silver/50"
+            }`}
+          >
+            Intrigue
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterCategory("Pokémon")}
+            className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+              filterCategory === "Pokémon"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-mii-slate hover:bg-mii-silver/50"
+            }`}
+          >
+            Pokemon
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterCategory("Quêtes")}
+            className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+              filterCategory === "Quêtes"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-mii-slate hover:bg-mii-silver/50"
+            }`}
+          >
+            Quetes
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterCategory("Collection")}
+            className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+              filterCategory === "Collection"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-mii-slate hover:bg-mii-silver/50"
+            }`}
+          >
+            Collection
+          </button>
+          <button
+            type="button"
+            onClick={() => setFilterCategory("Divers")}
+            className={`whitespace-nowrap rounded-xl px-4 py-2 text-sm font-semibold transition-all ${
+              filterCategory === "Divers"
+                ? "bg-purple-600 text-white shadow-sm"
+                : "text-mii-slate hover:bg-mii-silver/50"
+            }`}
+          >
+            Divers
+          </button>
+        </div>
       </div>
 
       {filteredAchievements.length === 0 ? (
@@ -288,7 +383,9 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
             {filteredAchievements.map((achievement, index) => {
               const isCompleted = completedSet.has(achievement.id);
               const prevAchievement = filteredAchievements[index - 1];
-              const showDivider =
+
+              // Divider between completed and incomplete in readOnly mode
+              const showCompletedDivider =
                 readOnly &&
                 filterStatus === "all" &&
                 index > 0 &&
@@ -296,9 +393,24 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
                 completedSet.has(prevAchievement.id) &&
                 !isCompleted;
 
+              // Divider between categories when showing all categories
+              const showCategoryDivider =
+                filterCategory === "all" &&
+                index > 0 &&
+                prevAchievement &&
+                achievement.category !== prevAchievement.category;
+
+              const categoryColors: Record<AchievementCategory, string> = {
+                "Intrigue": "from-red-500 to-pink-500",
+                "Pokémon": "from-blue-500 to-cyan-500",
+                "Quêtes": "from-green-500 to-emerald-500",
+                "Collection": "from-purple-500 to-violet-500",
+                "Divers": "from-gray-500 to-slate-500",
+              };
+
               return (
                 <React.Fragment key={achievement.id}>
-                  {showDivider && (
+                  {showCompletedDivider && (
                     <div className="col-span-full flex items-center gap-3">
                       <div className="inline-flex items-center gap-2 rounded-full bg-mii-slate/10 px-4 py-2 text-sm font-semibold text-mii-slate">
                         <svg
@@ -318,6 +430,26 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
                         Succes a valider
                       </div>
                       <div className="h-px flex-1 bg-gradient-to-r from-mii-slate/20 to-transparent" />
+                    </div>
+                  )}
+                  {showCategoryDivider && (
+                    <div className="col-span-full flex items-center gap-3">
+                      <div className={`inline-flex items-center gap-2 rounded-full bg-gradient-to-r ${categoryColors[achievement.category]} px-4 py-2 text-sm font-bold text-white shadow-lg`}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="size-4"
+                        >
+                          <path d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        {achievement.category}
+                      </div>
+                      <div className={`h-px flex-1 bg-gradient-to-r ${categoryColors[achievement.category]}/20 to-transparent`} />
                     </div>
                   )}
                   <AchievementCard
