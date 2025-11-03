@@ -36,11 +36,23 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
     if (!searchQuery.trim()) {
       return achievements;
     }
-    const query = searchQuery.toLowerCase();
+
+    // Normaliser la recherche pour gérer les caractères spéciaux
+    const normalizeText = (text: string) => {
+      return text
+        .toLowerCase()
+        .normalize("NFD") // Décompose les caractères accentués
+        .replace(/[\u0300-\u036f]/g, "") // Supprime les accents
+        .replace(/œ/g, "oe") // Œ → oe
+        .replace(/æ/g, "ae"); // Æ → ae
+    };
+
+    const normalizedQuery = normalizeText(searchQuery);
+
     return achievements.filter(
       (achievement) =>
-        achievement.title.toLowerCase().includes(query) ||
-        achievement.description.toLowerCase().includes(query)
+        normalizeText(achievement.title).includes(normalizedQuery) ||
+        normalizeText(achievement.description).includes(normalizedQuery)
     );
   }, [achievements, searchQuery]);
 

@@ -19,7 +19,12 @@ export async function POST(request: NextRequest) {
     );
     const [username, password] = credentials.split(":");
 
-    // Verify credentials
+    // Verify credentials exist
+    if (!username || !password) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    }
+
+    // Verify credentials match
     if (
       username !== process.env.ADMIN_USERNAME ||
       password !== process.env.ADMIN_PASSWORD
@@ -54,14 +59,14 @@ export async function POST(request: NextRequest) {
     });
 
     const currentAchievementIds = new Set(
-      currentProgress.map((p) => p.achievementId)
+      currentProgress.map((p: { achievementId: string; id: string }) => p.achievementId)
     );
     const newAchievementIds = new Set(completedIds);
 
     // Delete achievements that are no longer completed
     const toDelete = currentProgress
-      .filter((p) => !newAchievementIds.has(p.achievementId))
-      .map((p) => p.id);
+      .filter((p: { achievementId: string; id: string }) => !newAchievementIds.has(p.achievementId))
+      .map((p: { achievementId: string; id: string }) => p.id);
 
     if (toDelete.length > 0) {
       await prisma.userProgress.deleteMany({

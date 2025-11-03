@@ -3,6 +3,9 @@ import type { Achievement } from "@/types/achievement";
 import successes from "@/public/successes.json";
 import Link from "next/link";
 
+// Force dynamic rendering
+export const dynamic = "force-dynamic";
+
 const achievements = successes as Achievement[];
 
 async function getJosplayProgress() {
