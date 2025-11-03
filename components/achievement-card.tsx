@@ -21,9 +21,26 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
   const { id, title, description, icon } = achievement;
   const [showAnimation, setShowAnimation] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const prevCompletedRef = useRef<boolean>(isCompleted);
+  const hasHydratedRef = useRef(false);
+
+  // Marquer l'hydratation initiale
+  useEffect(() => {
+    if (isHydrated && !hasHydratedRef.current) {
+      hasHydratedRef.current = true;
+      prevCompletedRef.current = isCompleted;
+    }
+  }, [isHydrated, isCompleted]);
 
   useEffect(() => {
-    if (isCompleted && isHydrated && buttonRef.current) {
+    // Ne déclencher les confettis que si :
+    // 1. La page est hydratée
+    // 2. Le succès vient de passer de non complété à complété
+    // 3. Ce n'est pas le chargement initial
+    const justCompleted = isCompleted && !prevCompletedRef.current && hasHydratedRef.current;
+
+    if (justCompleted && buttonRef.current) {
+      prevCompletedRef.current = isCompleted;
       // Get button position for confetti origin
       const rect = buttonRef.current.getBoundingClientRect();
       const x = (rect.left + rect.width - 40) / window.innerWidth; // Position du check
@@ -82,8 +99,11 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
         cancelAnimationFrame(animFrame);
         clearTimeout(timer);
       };
+    } else if (!isCompleted && prevCompletedRef.current) {
+      // Mettre à jour la ref si le succès est décoché
+      prevCompletedRef.current = isCompleted;
     }
-  }, [isCompleted, isHydrated]);
+  }, [isCompleted]);
 
   const handleClick = () => {
     if (!readOnly) {
