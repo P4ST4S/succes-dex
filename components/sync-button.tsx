@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 
-interface SyncButtonProps {
-  completedIds: string[];
-}
-
 const AUTH_STORAGE_KEY = "mii-achievements::auth";
+const STORAGE_KEY = "mii-achievements::completed";
 
-export const SyncButton: React.FC<SyncButtonProps> = ({ completedIds }) => {
+export const SyncButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [username, setUsername] = useState("josplay");
   const [password, setPassword] = useState("");
@@ -44,6 +41,10 @@ export const SyncButton: React.FC<SyncButtonProps> = ({ completedIds }) => {
     setMessage(null);
 
     try {
+      // Lire les completedIds depuis localStorage au moment de la sync
+      const storedCompletedIds = localStorage.getItem(STORAGE_KEY);
+      const completedIds = storedCompletedIds ? JSON.parse(storedCompletedIds) : [];
+
       const credentials = btoa(`${username}:${password}`);
       const response = await fetch("/api/sync", {
         method: "POST",
@@ -100,6 +101,17 @@ export const SyncButton: React.FC<SyncButtonProps> = ({ completedIds }) => {
       handleSync();
     } else {
       setIsOpen(true);
+    }
+  };
+
+  // Lire le nombre de succès pour l'affichage
+  const getCompletedCount = () => {
+    try {
+      const storedCompletedIds = localStorage.getItem(STORAGE_KEY);
+      const completedIds = storedCompletedIds ? JSON.parse(storedCompletedIds) : [];
+      return completedIds.length;
+    } catch {
+      return 0;
     }
   };
 
@@ -177,7 +189,7 @@ export const SyncButton: React.FC<SyncButtonProps> = ({ completedIds }) => {
             </div>
 
             <p className="mb-4 text-sm text-mii-slate">
-              Synchronise ta progression locale ({completedIds.length} succès
+              Synchronise ta progression locale ({getCompletedCount()} succès
               validés) avec le serveur pour que tout le monde puisse voir ton
               avancement.
             </p>
