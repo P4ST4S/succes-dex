@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
+const STORAGE_KEY = "mii-achievements::completed";
+
 export interface User {
   id: string;
   username: string;
@@ -19,10 +21,54 @@ interface UseUserReturn {
   error: string | null;
 }
 
+// Helper to get localStorage data
+function getLocalStorageCompletedIds(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+}
+
+// Helper to clear localStorage data
+function clearLocalStorageCompletedIds(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // Ignore
+  }
+}
+
 export function useUser(): UseUserReturn {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Sync localStorage achievements to DB
+  const syncLocalToDb = useCallback(async () => {
+    const localCompletedIds = getLocalStorageCompletedIds();
+
+    if (localCompletedIds.length === 0) return;
+
+    try {
+      const response = await fetch("/api/achievements/sync-local", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ localCompletedIds }),
+      });
+
+      if (response.ok) {
+        // Clear localStorage after successful sync
+        clearLocalStorageCompletedIds();
+        console.log("✅ LocalStorage achievements synced to DB");
+      }
+    } catch (err) {
+      console.error("Failed to sync localStorage to DB:", err);
+    }
+  }, []);
 
   // Fetch current user
   const fetchUser = useCallback(async () => {
@@ -75,6 +121,11 @@ export function useUser(): UseUserReturn {
       }
 
       await fetchUser();
+
+      // Sync localStorage to DB after successful login
+      await syncLocalToDb();
+      // Refresh user to get updated completedIds
+      await fetchUser();
     } catch (err) {
       const message = err instanceof Error ? err.message : "Login failed";
       setError(message);
@@ -82,7 +133,7 @@ export function useUser(): UseUserReturn {
     } finally {
       setIsLoading(false);
     }
-  }, [fetchUser]);
+  }, [fetchUser, syncLocalToDb]);
 
   // Register
   const register = useCallback(
@@ -104,6 +155,11 @@ export function useUser(): UseUserReturn {
         }
 
         await fetchUser();
+
+        // Sync localStorage to DB after successful registration
+        await syncLocalToDb();
+        // Refresh user to get updated completedIds
+        await fetchUser();
       } catch (err) {
         const message = err instanceof Error ? err.message : "Registration failed";
         setError(message);
@@ -112,7 +168,7 @@ export function useUser(): UseUserReturn {
         setIsLoading(false);
       }
     },
-    [fetchUser]
+    [fetchUser, syncLocalToDb]
   );
 
   // Logout
