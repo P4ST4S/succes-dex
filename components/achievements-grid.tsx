@@ -152,8 +152,16 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
       !isCompleted;
 
     // Show category dividers when showing all categories OR when changing category
+    // BUT in readOnly mode, don't show if we're just changing status within same category
+    const isSameCategoryStatusChange =
+      readOnly &&
+      prevAchievement &&
+      achievement.category === prevAchievement.category &&
+      completedSet.has(prevAchievement.id) !== isCompleted;
+
     const showCategoryDivider =
       filters.filterCategory === null &&
+      !isSameCategoryStatusChange &&
       (index === 0 ||
         (prevAchievement && achievement.category !== prevAchievement.category));
 

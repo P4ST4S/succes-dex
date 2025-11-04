@@ -52,11 +52,20 @@ export function useAchievementFilters({
     // Tri
     if (readOnly) {
       filtered.sort((a, b) => {
+        // 1. Trier par statut (complétés en premier)
         const aCompleted = completedSet.has(a.id);
         const bCompleted = completedSet.has(b.id);
         if (aCompleted !== bCompleted) {
           return aCompleted ? -1 : 1;
         }
+        // 2. Trier par catégorie
+        const categoryComparison =
+          CATEGORY_ORDER.indexOf(a.category) -
+          CATEGORY_ORDER.indexOf(b.category);
+        if (categoryComparison !== 0) {
+          return categoryComparison;
+        }
+        // 3. Trier par titre
         return a.title.localeCompare(b.title);
       });
     } else {
