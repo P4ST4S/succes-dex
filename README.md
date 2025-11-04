@@ -93,3 +93,7 @@ Both features require authentication credentials configured on the backend.
 ### Theming
 
 Tailwind tokens are defined in `tailwind.config.ts`. The palette includes Pokemon-themed colors with Mii Channel inspiration for a playful, nostalgic feel.
+
+### Deployment
+
+The project is deployed on Vercel using zero-config Next.js hosting. Merge or push to the `main` branch triggers Vercel’s build pipeline, which runs `pnpm install` and `pnpm build` before promoting the build to production. Environment variables are managed via the Vercel dashboard to keep secrets out of the repo.
