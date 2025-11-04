@@ -2,6 +2,12 @@
 
 Challenge run tracker for Pokemon Heartgold & Soulsilver achievements created by Josplay. Built with Next.js App Router, strict TypeScript, and Tailwind CSS v4. Achievements are loaded from a static JSON file and completion state is stored locally in the browser.
 
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
+
 ### Stack
 - Next.js 14 App Router with modular architecture
 - React 19 with server-first layouts
@@ -60,13 +66,16 @@ All major components have been refactored to be modular, testable, and maintaina
      "id": "unique-id",
      "title": "Achievement title",
      "description": "What the player needs to do",
-     "icon": "/icons/default.svg"
+     "icon": "/icons/default.svg",
+     "category": "Category Name"
    }
    ```
 3. Keep the `id` unique—this key is also what gets stored in LocalStorage.
 4. Optionally drop a new SVG icon inside `public/icons/` and reference it through the `icon` field.
 
 Changes are picked up automatically at runtime thanks to `resolveJsonModule` and static imports.
+
+> Categories are defined implicitly based on the `category` field in each achievement object. New categories will appear automatically in the UI.
 
 ### Local storage & reset
 
