@@ -1,99 +1,152 @@
-## Succes Pokemon Heartgold & Soulsilver
+<h1 align="center">🧩 Succès Dex</h1>
+<p align="center">Track the Josplay HeartGold & SoulSilver challenge run with a pixel-perfect, shareable progress companion.</p>
+<p align="center">
+  <a href="https://www.typescriptlang.org/"><img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"></a>
+  <a href="https://nextjs.org/"><img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white"></a>
+  <a href="https://tailwindcss.com/"><img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white"></a>
+  <a href="https://www.prisma.io/"><img alt="Prisma" src="https://img.shields.io/badge/Prisma-1B222D?style=for-the-badge&logo=prisma&logoColor=white"></a>
+  <a href="https://succes-dex.com"><img alt="Live Demo" src="https://img.shields.io/badge/Demo-Live-22CC88?style=for-the-badge&logo=vercel&logoColor=white"></a>
+  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-000?style=for-the-badge"></a>
+</p>
+<p align="center"><a href="https://succes-dex.com">succes-dex.com</a></p>
 
-Challenge run tracker for Pokemon Heartgold & Soulsilver achievements created by Josplay. Built with Next.js App Router, strict TypeScript, and Tailwind CSS v4. Achievements are loaded from a static JSON file and completion state is stored locally in the browser.
+![Preview](./public/icon.jpg)
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38BDF8?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)
+## Introduction 🎯
+Succès Dex est le compagnon moderne qui transforme les succès de Josplay pour Pokémon HeartGold & SoulSilver en une expérience interactive, accessible et partageable. Built for developers who care about simplicity, performance, and clarity.
 
-### Stack
-- Next.js 14 App Router with modular architecture
-- React 19 with server-first layouts
-- Tailwind CSS v4 with a custom Pokemon-inspired palette
-- Typed custom hooks with separation of concerns
-- Canvas-confetti for achievement animations
-- Server sync capabilities for sharing progress
+---
 
-### Getting started
+## Table of Contents 📚
+- [Features ✨](#features-)
+- [Installation 🧰](#installation-)
+- [Usage 🚀](#usage-)
+- [Architecture 🏗️](#architecture-)
+- [Tech Stack 🧠](#tech-stack-)
+- [Contributing 🤝](#contributing-)
+- [Roadmap 🗺️](#roadmap-)
+- [License ⚖️](#license-)
+- [Acknowledgments 🙏](#acknowledgments-)
 
-```bash
-pnpm install
-pnpm dev
-```
+---
 
-Visit [http://localhost:3000](http://localhost:3000) and start unlocking achievements. Useful commands:
+## Features ✨
+- 🎯 Cartes de succès interactives avec progression en temps réel, confettis et accessibilité clavier.
+- 🔍 Recherche instantanée, filtres par statut et catégories dynamiques alimentées par `public/successes.json`.
+- 🔄 Synchronisation cloud bidirectionnelle via API Next.js, Prisma et support Neon/Postgres.
+- 💾 Persistance locale SSR-safe grâce à un hook `useLocalStorage` typé qui écoute les événements multi-onglets.
+- 🛡️ Authentification Basic sécurisée pour protéger la progression partagée côté serveur.
+- 🧭 Tableau de bord responsive optimisé Tailwind v4 et animations Press Start 2P pour une ambiance rétro.
 
-- `pnpm lint` – ESLint with Next.js + TypeScript rules
-- `pnpm build` – production build (prerequisite for deployment)
+---
 
-### Project layout
-
-- `app/` – App Router entry points and global layout
-- `components/` – UI building blocks (modular, < 200 lines each)
-  - `achievements/` – Sub-components (AchievementHeader, AchievementFilters, CategoryDivider, StatusDivider, EmptyState)
-  - `auth/` – Authentication components (AuthModal, AuthForm)
-- `hooks/` – Custom React hooks following 2025 best practices
-  - `useLocalStorage.ts` – Browser-safe localStorage wrapper
-  - `useAuth.ts` – Authentication state with useReducer
-  - `useToast.ts` – Toast notification manager
-  - `useAchievementAnimation.ts` – Confetti animation logic
-  - `useAchievementStats.ts` – Achievement statistics calculator
-  - `useAchievementFilters.ts` – Search, filter and sort logic
-- `config/` – Configuration files (achievements, confetti)
-- `lib/` – Utility functions (text normalization)
-- `public/` – Statically served assets (`successes.json`, icons)
-- `types/` – Shared TypeScript contracts
-
-### Architecture
-
-The codebase follows Next.js 14 best practices with strict separation of concerns:
-
-- **UI Components** (< 100-200 lines) – Pure presentation, minimal logic
-- **Custom Hooks** – Business logic, state management with useReducer where appropriate
-- **Configuration Files** – Constants, colors, labels externalized
-- **Utility Functions** – Reusable helpers (text normalization, etc.)
-
-All major components have been refactored to be modular, testable, and maintainable.
-
-### Adding or editing achievements
-
-1. Open `public/successes.json`.
-2. Add a new object following the existing shape:
-   ```json
-   {
-     "id": "unique-id",
-     "title": "Achievement title",
-     "description": "What the player needs to do",
-     "icon": "/icons/default.svg",
-     "category": "Category Name"
-   }
+## Installation 🧰
+1. **Cloner et installer**
+   ```bash
+   git clone https://github.com/pastas/pokemon-success-josplay.git
+   cd pokemon-success-josplay
+   pnpm install
    ```
-3. Keep the `id` unique—this key is also what gets stored in LocalStorage.
-4. Optionally drop a new SVG icon inside `public/icons/` and reference it through the `icon` field.
+2. **Configurer les secrets**
+   ```bash
+   cp .env .env.local
+   # Renseignez DATABASE_URL, ADMIN_USERNAME, ADMIN_PASSWORD
+   ```
+3. **Initialiser la base**
+   ```bash
+   pnpm prisma migrate deploy
+   ```
+4. **Lancer le mode dev**
+   ```bash
+   pnpm dev
+   ```
+5. **Visiter l'application** → http://localhost:3000
 
-Changes are picked up automatically at runtime thanks to `resolveJsonModule` and static imports.
+---
 
-> Categories are defined implicitly based on the `category` field in each achievement object. New categories will appear automatically in the UI.
+## Usage 🚀
+**Quick start**
+```tsx
+import successes from "@/public/successes.json";
+import { AchievementsGrid } from "@/components/achievements-grid";
 
-### Local storage & reset
+<AchievementsGrid achievements={successes} />;
+```
+- Cochez les succès pour enregistrer votre progression instantanément dans le navigateur.
+- Utilisez la barre de recherche, les filtres de statut ou de catégorie pour garder le cap.
 
-- Completion state lives under the key `mii-achievements::completed`.
-- Use the "Reinitialiser" button in the UI to clear the stored data.
+**Advanced usage**
+```bash
+# Synchroniser depuis un terminal (exemple)
+curl -X POST https://succes-dex.com/api/sync \
+  -u "<ADMIN_USERNAME>:<ADMIN_PASSWORD>" \
+  -H "Content-Type: application/json" \
+  -d '{"completedIds":["elite-four","johto-dex","red-battle"]}'
+```
+- Ajoutez de nouveaux succès en enrichissant `public/successes.json` (structure typée via `types/achievement.ts`).
+- Déployez sur Vercel : la CI exécute `pnpm install`, `pnpm prisma generate`, `pnpm build` automatiquement.
 
-### Server sync
+---
 
-The app includes sync buttons to share progress with a server:
-- **Synchroniser** – Upload your current progress to the server
-- **Récupérer** – Download and merge progress from the server
+## Architecture 🏗️
+```text
+app/
+  ├─ page.tsx           # Landing + Sync CTA
+  ├─ api/               # Routes REST pour sync/progress
+components/
+  ├─ achievement-card   # Cartes interactives + animation confetti
+  ├─ achievements/      # Header, filtres, dividers, empty state
+  └─ sync-button.tsx    # Auth modal + actions sync/fetch
+hooks/
+  ├─ useLocalStorage    # Persistance SSR-safe
+  ├─ useAchievement*    # Stats, filtres, animations
+lib/prisma.ts           # Client Prisma instancié une seule fois
+public/successes.json   # Source de vérité des succès (déployée statiquement)
+prisma/schema.prisma    # Modèle Postgres (users + user_progress)
+```
+- Separation of concerns stricte : UI légère, logique dans les hooks, données dans config/types.
+- Synchronisation sécurisée avec contraintes d'unicité Prisma et clean-up automatique.
 
-Both features require authentication credentials configured on the backend.
+---
 
-### Theming
+## Tech Stack 🧠
+- 🟦 TypeScript — Typage strict des composants, hooks et JSON.
+- ⚙️ Next.js 16 App Router — Rendus full-stack, API Routes et métadonnées automatiques.
+- 🎨 Tailwind CSS v4 — Design system rétro Pokémon + tokens personnalisés.
+- 🧰 Prisma ORM — Accès Postgres multi-environnements avec migrations 2025-ready.
+- 🪄 React 19 — Server Components + transitions client fluides.
+- ☁️ Vercel & Neon — Déploiement instantané et base managée compatible edge.
 
-Tailwind tokens are defined in `tailwind.config.ts`. The palette includes Pokemon-themed colors with Mii Channel inspiration for a playful, nostalgic feel.
+---
 
-### Deployment
+## Contributing 🤝
+1. Forkez le dépôt puis créez une branche feature : `git checkout -b feat/new-achievement`.
+2. Suivez nos guidelines (formatage, convention de commit) décrites dans `SYNC_GUIDE.md`.
+3. Ajoutez des tests ou des captures quand vous touchez au rendu.
+4. Ouvrez une Pull Request en détaillant l'impact utilisateur et les points de vérification.
+5. La revue inclut lint (`pnpm lint`) et tests de sync manuels via les routes API.
 
-The project is deployed on Vercel using zero-config Next.js hosting. Merge or push to the `main` branch triggers Vercel’s build pipeline, which runs `pnpm install` and `pnpm build` before promoting the build to production. Environment variables are managed via the Vercel dashboard to keep secrets out of the repo.
+---
+
+## Roadmap 🗺️
+1. [ ] Mode multi-profils avec partage public sécurisé.
+2. [ ] Export/Import JSON des succès hors-ligne.
+3. [ ] Vue mobile dédiée avec navigation par gestes.
+4. [ ] Dashboard analytics pour les streams Josplay.
+5. [x] Synchronisation cloud chiffrée via Prisma.
+
+---
+
+## License ⚖️
+Distribué sous licence [MIT](./LICENSE). ![MIT License](https://img.shields.io/badge/License-MIT-000?style=for-the-badge)
+
+---
+
+## Acknowledgments 🙏
+- Josplay pour la création des succès originaux HeartGold & SoulSilver.
+- Communauté Pokémon francophone pour les retours UX et accessibilité.
+- Prisma & Neon pour leur tooling developer-first qui facilite la sync cloud.
+
+---
+
+Made with ❤️ by Pastas — MIT License
