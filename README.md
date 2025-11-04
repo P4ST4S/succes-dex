@@ -43,7 +43,7 @@ Succès Dex est le compagnon moderne qui transforme les succès de Josplay pour 
 ## Installation 🧰
 1. **Cloner et installer**
    ```bash
-   git clone https://github.com/pastas/pokemon-success-josplay.git
+   git clone https://github.com/P4ST4S/pokemon-success-josplay.git
    cd pokemon-success-josplay
    pnpm install
    ```
@@ -143,7 +143,7 @@ Distribué sous licence [MIT](./LICENSE). ![MIT License](https://img.shields.io/
 ---
 
 ## Acknowledgments 🙏
-- Josplay pour la création des succès originaux HeartGold & SoulSilver.
+- [Josplay](https://www.youtube.com/@josplay012) pour la création des succès originaux HeartGold & SoulSilver.
 - Communauté Pokémon francophone pour les retours UX et accessibilité.
 - Prisma & Neon pour leur tooling developer-first qui facilite la sync cloud.
 
