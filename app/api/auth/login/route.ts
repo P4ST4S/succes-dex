@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { verifyPassword, generateToken, setAuthCookie } from "@/lib/auth";
+import { verifyPassword, generateToken, createAuthCookie } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
   try {
     const { identifier, password } = await request.json();
+
+    console.log("password: ", password);
+    
 
     // Validation
     if (!identifier || !password) {
@@ -22,9 +25,22 @@ export async function POST(request: NextRequest) {
           { email: identifier },
         ],
       },
+      select: {
+        id: true,
+        username: true,
+        email: true,
+        password: true,
+      },
     });
 
+    console.log("user found:", user ? "YES" : "NO");
+    if (user) {
+      console.log("user.username:", user.username);
+      console.log("user has password:", !!user.password);
+    }
+
     if (!user) {
+      console.log("RETURNING 401: user not found");
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
@@ -32,9 +48,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify password
+    console.log("verifying password...");
     const isValid = await verifyPassword(password, user.password);
+    console.log("password valid:", isValid);
 
     if (!isValid) {
+      console.log("RETURNING 401: invalid password");
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
@@ -48,10 +67,8 @@ export async function POST(request: NextRequest) {
       email: user.email || "",
     });
 
-    // Set cookie
-    await setAuthCookie(token);
-
-    return NextResponse.json({
+    // Create response with cookie
+    const response = NextResponse.json({
       success: true,
       user: {
         id: user.id,
@@ -59,6 +76,11 @@ export async function POST(request: NextRequest) {
         email: user.email,
       },
     });
+
+    // Set cookie in response
+    response.headers.set("Set-Cookie", createAuthCookie(token));
+
+    return response;
   } catch (error) {
     console.error("Login error:", error);
     return NextResponse.json(

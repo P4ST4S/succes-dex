@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { hashPassword, generateToken, setAuthCookie } from "@/lib/auth";
+import { hashPassword, generateToken, createAuthCookie } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
   try {
@@ -89,10 +89,8 @@ export async function POST(request: NextRequest) {
       email: user.email || "",
     });
 
-    // Set cookie
-    await setAuthCookie(token);
-
-    return NextResponse.json(
+    // Create response with cookie
+    const response = NextResponse.json(
       {
         success: true,
         user: {
@@ -103,6 +101,11 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 }
     );
+
+    // Set cookie in response
+    response.headers.set("Set-Cookie", createAuthCookie(token));
+
+    return response;
   } catch (error) {
     console.error("Registration error:", error);
     return NextResponse.json(

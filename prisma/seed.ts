@@ -8,9 +8,7 @@ async function main() {
 
   const adminUsername = process.env.ADMIN_USERNAME || "josplay";
   const adminPassword = process.env.ADMIN_PASSWORD;
-
   if (!adminPassword) {
-    console.error("❌ ADMIN_PASSWORD not set in environment variables");
     process.exit(1);
   }
 

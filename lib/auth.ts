@@ -50,16 +50,13 @@ export function verifyToken(token: string): JWTPayload | null {
 
 /**
  * Set auth cookie (httpOnly for security)
+ * Returns the cookie string to be used in Set-Cookie header
  */
-export async function setAuthCookie(token: string) {
-  const cookieStore = await cookies();
-  cookieStore.set("auth-token", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    maxAge: 60 * 60 * 24 * 7, // 7 days
-    path: "/",
-  });
+export function createAuthCookie(token: string): string {
+  const maxAge = 60 * 60 * 24 * 7; // 7 days
+  const secure = process.env.NODE_ENV === "production";
+
+  return `auth-token=${token}; HttpOnly; ${secure ? "Secure; " : ""}SameSite=Lax; Max-Age=${maxAge}; Path=/`;
 }
 
 /**
