@@ -1,7 +1,7 @@
 "use client";
 
 import { AchievementsGrid } from "@/components/achievements-grid";
-import { SyncButton } from "@/components/sync-button";
+import { AuthButtons } from "@/components/AuthButtons";
 import type { Achievement } from "@/types/achievement";
 import successes from "@/public/successes.json";
 
@@ -34,7 +34,7 @@ export default function Home() {
           <p className="max-w-2xl text-pretty text-base text-mii-slate sm:text-lg">
             Challenge run des succès créés par Josplay, pour Pokémon Heartgold & Soulsilver. Chaque succès peut être validé en respectant les conditions indiquées.
           </p>
-          <SyncButton />
+          <AuthButtons />
         </div>
       </section>
       <AchievementsGrid achievements={achievements} />

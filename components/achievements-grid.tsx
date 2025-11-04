@@ -7,6 +7,7 @@ import { AchievementFilters } from "@/components/achievements/AchievementFilters
 import { CategoryDivider } from "@/components/achievements/CategoryDivider";
 import { StatusDivider } from "@/components/achievements/StatusDivider";
 import { EmptyState } from "@/components/achievements/EmptyState";
+import { useUser } from "@/hooks/useUser";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useAchievementStats } from "@/hooks/useAchievementStats";
 import { useAchievementFilters } from "@/hooks/useAchievementFilters";
@@ -26,12 +27,15 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
 }) => {
   const [readOnlyCompletedIds, setReadOnlyCompletedIds] =
     useState<string[]>(initialCompletedIds);
+  const { user, isLoading: isUserLoading, refreshUser } = useUser();
+  const [isToggling, setIsToggling] = useState<string | null>(null);
 
+  // LocalStorage fallback for non-authenticated users
   const {
     value: localCompletedIds,
-    setValue: setCompletedIds,
-    reset,
-    isHydrated,
+    setValue: setLocalCompletedIds,
+    reset: resetLocalStorage,
+    isHydrated: isLocalHydrated,
   } = useLocalStorage<string[]>(STORAGE_KEY, []);
 
   // Sync readOnly completed IDs
@@ -41,8 +45,15 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
     }
   }, [readOnly, JSON.stringify(initialCompletedIds)]);
 
-  const completedIds = readOnly ? readOnlyCompletedIds : localCompletedIds;
+  // Determine which completed IDs to use
+  const completedIds = readOnly
+    ? readOnlyCompletedIds
+    : user
+      ? user.completedIds
+      : localCompletedIds;
+
   const completedSet = new Set(completedIds);
+  const isHydrated = readOnly ? true : (user ? !isUserLoading : isLocalHydrated);
 
   const stats = useAchievementStats({
     completedSet,
@@ -56,16 +67,55 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
   });
 
   const handleToggle = useCallback(
-    (id: Achievement["id"]) => {
-      setCompletedIds((previous) => {
-        if (previous.includes(id)) {
-          return previous.filter((entry) => entry !== id);
+    async (id: Achievement["id"]) => {
+      if (readOnly || isToggling) return;
+
+      setIsToggling(id);
+
+      try {
+        if (user) {
+          // User is authenticated - save to DB
+          const response = await fetch("/api/achievements/toggle", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ achievementId: id }),
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to toggle achievement");
+          }
+
+          // Refresh user to get updated completedIds
+          await refreshUser();
+        } else {
+          // User is NOT authenticated - save to localStorage only
+          setLocalCompletedIds((previous) => {
+            if (previous.includes(id)) {
+              return previous.filter((entry) => entry !== id);
+            }
+            return [...previous, id];
+          });
         }
-        return [...previous, id];
-      });
+      } catch (error) {
+        console.error("Error toggling achievement:", error);
+      } finally {
+        setIsToggling(null);
+      }
     },
-    [setCompletedIds]
+    [user, isToggling, refreshUser, setLocalCompletedIds, readOnly]
   );
+
+  const handleReset = useCallback(async () => {
+    if (readOnly) return;
+
+    if (user) {
+      // Not implemented yet - would need a bulk delete API endpoint
+      console.log("Reset not yet implemented for DB mode");
+    } else {
+      // Reset localStorage
+      resetLocalStorage();
+    }
+  }, [user, readOnly, resetLocalStorage]);
 
   const getCategoryStats = (category: Achievement["category"]) => {
     const categoryAchievements = achievements.filter(
@@ -101,9 +151,17 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
       completedSet.has(prevAchievement.id) &&
       !isCompleted;
 
-    // Show category dividers when showing all categories
+    // Show category dividers when showing all categories OR when changing category
+    // BUT in readOnly mode, don't show if we're just changing status within same category
+    const isSameCategoryStatusChange =
+      readOnly &&
+      prevAchievement &&
+      achievement.category === prevAchievement.category &&
+      completedSet.has(prevAchievement.id) !== isCompleted;
+
     const showCategoryDivider =
       filters.filterCategory === null &&
+      !isSameCategoryStatusChange &&
       (index === 0 ||
         (prevAchievement && achievement.category !== prevAchievement.category));
 
@@ -139,7 +197,7 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
         completedCount={stats.completedCount}
         totalCount={stats.totalCount}
         completionRatio={stats.completionRatio}
-        onReset={reset}
+        onReset={handleReset}
         readOnly={readOnly}
         isHydrated={isHydrated}
       />
@@ -175,6 +233,8 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
                     onToggle={handleToggle}
                     isHydrated={readOnly ? true : isHydrated}
                     readOnly={readOnly}
+                    isLoading={isToggling === achievement.id}
+                    disabled={isToggling !== null && isToggling !== achievement.id}
                   />
                 </React.Fragment>
               );

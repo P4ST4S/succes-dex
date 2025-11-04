@@ -10,31 +10,43 @@ interface AchievementCardProps {
   isHydrated: boolean;
   onToggle: (id: Achievement["id"]) => void;
   readOnly?: boolean;
+  isLoading?: boolean;
+  disabled?: boolean;
 }
 
 const getCardClasses = (
   isCompleted: boolean,
   isHydrated: boolean,
   showAnimation: boolean,
-  readOnly: boolean
+  readOnly: boolean,
+  disabled: boolean,
+  isLoading: boolean
 ) => {
   const baseClasses =
-    "group relative flex h-full min-h-40 items-stretch gap-4 overflow-hidden rounded-[26px] border-[3px] border-mii-silver bg-white/95 px-6 py-6 text-left shadow-[7px_7px_0_rgba(18,38,58,0.12)] transition-transform duration-150 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-mii-lime/70";
+    "group relative flex h-full min-h-40 items-stretch gap-4 overflow-hidden rounded-[26px] border-[3px] border-mii-silver bg-white/95 px-6 py-6 text-left shadow-[7px_7px_0_rgba(18,38,58,0.12)] transition-all duration-150 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-mii-lime/70";
 
-  const interactionClasses = readOnly
+  const interactionClasses = readOnly || disabled
     ? "cursor-default"
     : "active:translate-y-0.5";
+
+  const disabledClasses = disabled && !isLoading
+    ? "opacity-50 pointer-events-none"
+    : "";
+
+  const loadingClasses = isLoading
+    ? "animate-pulse cursor-wait"
+    : "";
 
   const stateClasses =
     isCompleted && isHydrated && showAnimation
       ? "border-mii-lime/70 bg-mii-lime/20 animate-achievement-pop"
       : isCompleted
       ? "border-mii-lime/70 bg-mii-lime/20"
-      : !readOnly
+      : !readOnly && !disabled
       ? "hover:-translate-y-1"
       : "";
 
-  return `${baseClasses} ${interactionClasses} ${stateClasses}`;
+  return `${baseClasses} ${interactionClasses} ${disabledClasses} ${loadingClasses} ${stateClasses}`;
 };
 
 export const AchievementCard: React.FC<AchievementCardProps> = ({
@@ -43,6 +55,8 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
   isHydrated,
   onToggle,
   readOnly = false,
+  isLoading = false,
+  disabled = false,
 }) => {
   const { id, title, description, icon } = achievement;
   const { showAnimation, buttonRef } = useAchievementAnimation({
@@ -51,7 +65,7 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
   });
 
   const handleClick = () => {
-    if (!readOnly) {
+    if (!readOnly && !disabled && !isLoading) {
       onToggle(id);
     }
   };
@@ -63,8 +77,8 @@ export const AchievementCard: React.FC<AchievementCardProps> = ({
       ref={buttonRef}
       type="button"
       onClick={handleClick}
-      disabled={readOnly}
-      className={getCardClasses(isCompleted, isHydrated, showAnimation, readOnly)}
+      disabled={readOnly || disabled || isLoading}
+      className={getCardClasses(isCompleted, isHydrated, showAnimation, readOnly, disabled, isLoading)}
       aria-pressed={isCompleted}
       aria-label={`${title} — ${statusLabel}`}
     >
