@@ -225,6 +225,8 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
                     onToggle={handleToggle}
                     isHydrated={readOnly ? true : isHydrated}
                     readOnly={readOnly}
+                    isLoading={isToggling === achievement.id}
+                    disabled={isToggling !== null && isToggling !== achievement.id}
                   />
                 </React.Fragment>
               );
