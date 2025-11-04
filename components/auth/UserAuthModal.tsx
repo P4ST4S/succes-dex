@@ -13,32 +13,41 @@ interface UserAuthModalProps {
 
 export function UserAuthModal({ isOpen, onClose, defaultMode = "login" }: UserAuthModalProps) {
   const [mode, setMode] = useState<"login" | "register">(defaultMode);
-  const { login, register, error, user } = useUser();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { login, register, error } = useUser();
 
   // Update mode when defaultMode changes or modal opens
   useEffect(() => {
     if (isOpen) {
       setMode(defaultMode);
+      setIsSubmitting(false);
     }
   }, [isOpen, defaultMode]);
-
-  // Close modal when user is successfully authenticated
-  useEffect(() => {
-    if (user && isOpen) {
-      onClose();
-    }
-  }, [user, isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const handleLogin = async (identifier: string, password: string) => {
-    await login(identifier, password);
-    // Modal will close automatically via useEffect when user is set
+    setIsSubmitting(true);
+    try {
+      await login(identifier, password);
+      // Give time for the user state to propagate
+      await new Promise(resolve => setTimeout(resolve, 100));
+      onClose();
+    } catch (err) {
+      setIsSubmitting(false);
+    }
   };
 
   const handleRegister = async (username: string, password: string, email?: string) => {
-    await register(username, password, email);
-    // Modal will close automatically via useEffect when user is set
+    setIsSubmitting(true);
+    try {
+      await register(username, password, email);
+      // Give time for the user state to propagate
+      await new Promise(resolve => setTimeout(resolve, 100));
+      onClose();
+    } catch (err) {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -74,12 +83,14 @@ export function UserAuthModal({ isOpen, onClose, defaultMode = "login" }: UserAu
             onSubmit={handleLogin}
             onSwitchToRegister={() => setMode("register")}
             error={error}
+            isLoading={isSubmitting}
           />
         ) : (
           <RegisterForm
             onSubmit={handleRegister}
             onSwitchToLogin={() => setMode("login")}
             error={error}
+            isLoading={isSubmitting}
           />
         )}
       </div>

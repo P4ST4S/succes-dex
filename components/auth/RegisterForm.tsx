@@ -6,47 +6,37 @@ interface RegisterFormProps {
   onSubmit: (username: string, password: string, email?: string) => Promise<void>;
   onSwitchToLogin: () => void;
   error: string | null;
+  isLoading?: boolean;
 }
 
-export function RegisterForm({ onSubmit, onSwitchToLogin, error }: RegisterFormProps) {
+export function RegisterForm({ onSubmit, onSwitchToLogin, error, isLoading = false }: RegisterFormProps) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setValidationError("");
-    setIsLoading(true);
 
     // Validation
     if (password !== confirmPassword) {
       setValidationError("Les mots de passe ne correspondent pas");
-      setIsLoading(false);
       return;
     }
 
     if (password.length < 6) {
       setValidationError("Le mot de passe doit contenir au moins 6 caractères");
-      setIsLoading(false);
       return;
     }
 
     if (username.length < 3) {
       setValidationError("Le nom d'utilisateur doit contenir au moins 3 caractères");
-      setIsLoading(false);
       return;
     }
 
-    try {
-      await onSubmit(username, password, email || undefined);
-    } catch (err) {
-      // Error is handled by parent
-    } finally {
-      setIsLoading(false);
-    }
+    await onSubmit(username, password, email || undefined);
   };
 
   const displayError = validationError || error;

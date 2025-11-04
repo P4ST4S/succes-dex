@@ -6,24 +6,16 @@ interface LoginFormProps {
   onSubmit: (identifier: string, password: string) => Promise<void>;
   onSwitchToRegister: () => void;
   error: string | null;
+  isLoading?: boolean;
 }
 
-export function LoginForm({ onSubmit, onSwitchToRegister, error }: LoginFormProps) {
+export function LoginForm({ onSubmit, onSwitchToRegister, error, isLoading = false }: LoginFormProps) {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      await onSubmit(identifier, password);
-    } catch (err) {
-      // Error is handled by parent
-    } finally {
-      setIsLoading(false);
-    }
+    await onSubmit(identifier, password);
   };
 
   return (
