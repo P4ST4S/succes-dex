@@ -1,12 +1,14 @@
-## Mii Achievements
+## Succes Pokemon Heartgold & Soulsilver
 
-Playful Nintendo-inspired tracker built with Next.js App Router, strict TypeScript, and Tailwind CSS v4. Achievements are loaded from a static JSON file and completion state is stored locally in the browser.
+Challenge run tracker for Pokemon Heartgold & Soulsilver achievements created by Josplay. Built with Next.js App Router, strict TypeScript, and Tailwind CSS v4. Achievements are loaded from a static JSON file and completion state is stored locally in the browser.
 
 ### Stack
-- Next.js 14 App Router
+- Next.js 14 App Router with modular architecture
 - React 19 with server-first layouts
-- Tailwind CSS v4 with a custom Mii Channel palette
-- Typed local storage hook (`hooks/useLocalStorage.ts`)
+- Tailwind CSS v4 with a custom Pokemon-inspired palette
+- Typed custom hooks with separation of concerns
+- Canvas-confetti for achievement animations
+- Server sync capabilities for sharing progress
 
 ### Getting started
 
@@ -23,10 +25,31 @@ Visit [http://localhost:3000](http://localhost:3000) and start unlocking achieve
 ### Project layout
 
 - `app/` – App Router entry points and global layout
-- `components/` – UI building blocks (`AchievementCard`, `AchievementsGrid`)
-- `hooks/` – browser-safe composables (`useLocalStorage`)
-- `public/` – statically served assets (`successes.json`, icons)
-- `types/` – shared TypeScript contracts
+- `components/` – UI building blocks (modular, < 200 lines each)
+  - `achievements/` – Sub-components (AchievementHeader, AchievementFilters, CategoryDivider, StatusDivider, EmptyState)
+  - `auth/` – Authentication components (AuthModal, AuthForm)
+- `hooks/` – Custom React hooks following 2025 best practices
+  - `useLocalStorage.ts` – Browser-safe localStorage wrapper
+  - `useAuth.ts` – Authentication state with useReducer
+  - `useToast.ts` – Toast notification manager
+  - `useAchievementAnimation.ts` – Confetti animation logic
+  - `useAchievementStats.ts` – Achievement statistics calculator
+  - `useAchievementFilters.ts` – Search, filter and sort logic
+- `config/` – Configuration files (achievements, confetti)
+- `lib/` – Utility functions (text normalization)
+- `public/` – Statically served assets (`successes.json`, icons)
+- `types/` – Shared TypeScript contracts
+
+### Architecture
+
+The codebase follows Next.js 14 best practices with strict separation of concerns:
+
+- **UI Components** (< 100-200 lines) – Pure presentation, minimal logic
+- **Custom Hooks** – Business logic, state management with useReducer where appropriate
+- **Configuration Files** – Constants, colors, labels externalized
+- **Utility Functions** – Reusable helpers (text normalization, etc.)
+
+All major components have been refactored to be modular, testable, and maintainable.
 
 ### Adding or editing achievements
 
@@ -48,8 +71,16 @@ Changes are picked up automatically at runtime thanks to `resolveJsonModule` and
 ### Local storage & reset
 
 - Completion state lives under the key `mii-achievements::completed`.
-- Use the “Reset all” button in the UI to clear the stored data.
+- Use the "Reinitialiser" button in the UI to clear the stored data.
+
+### Server sync
+
+The app includes sync buttons to share progress with a server:
+- **Synchroniser** – Upload your current progress to the server
+- **Récupérer** – Download and merge progress from the server
+
+Both features require authentication credentials configured on the backend.
 
 ### Theming
 
-Tailwind tokens are defined in `tailwind.config.ts`. Update the extended colors or shadows to tweak the look & feel while keeping the Nintendo-inspired baseline.
+Tailwind tokens are defined in `tailwind.config.ts`. The palette includes Pokemon-themed colors with Mii Channel inspiration for a playful, nostalgic feel.
