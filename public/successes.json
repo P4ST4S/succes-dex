@@ -1,7 +1,10 @@
 [
   { "id": "agent-double", "title": "Agent double", "description": "Obtenir et enfiler la tenue Rocket", "icon": "/icons/default.svg", "category": "Quêtes" },
   { "id": "athlete-supreme", "title": "Athlète suprême", "description": "TOP 1 sur les mini jeux du pokéathlons", "icon": "/icons/default.svg", "category": "Divers" },
-  { "id": "attrapeur-en-serie", "title": "Attrapeur en série", "description": "Capturer 50 Pokémons, 100, 200, 300", "icon": "/icons/default.svg", "category": "Pokémon" },
+  { "id": "attrapeur-en-serie-1", "title": "Attrapeur en série I", "description": "Capturer 50 Pokémons", "icon": "/icons/default.svg", "category": "Pokémon" },
+  { "id": "attrapeur-en-serie-2", "title": "Attrapeur en série II", "description": "Capturer 100 Pokémons", "icon": "/icons/default.svg", "category": "Pokémon" },
+  { "id": "attrapeur-en-serie-3", "title": "Attrapeur en série III", "description": "Capturer 200 Pokémons", "icon": "/icons/default.svg", "category": "Pokémon" },
+  { "id": "attrapeur-en-serie-4", "title": "Attrapeur en série IV", "description": "Capturer 300 Pokémons", "icon": "/icons/default.svg", "category": "Pokémon" },
   { "id": "collectionneur-de-badges", "title": "Collectionneur de badges", "description": "Avoir les 16 Badges", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "tour-de-combat", "title": "Tour de Combat", "description": "Battre au moins un boss d’une des tours de combat", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "cache-cache-marin", "title": "Cache-cache marin", "description": "Jouer à cache-cache avec la petite sur le bateau", "icon": "/icons/default.svg", "category": "Divers" },
