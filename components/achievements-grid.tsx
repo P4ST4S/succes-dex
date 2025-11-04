@@ -152,9 +152,10 @@ export const AchievementsGrid: React.FC<AchievementsGridProps> = ({
       !isCompleted;
 
     // Show category dividers when showing all categories
+    // BUT don't show at index 0 if we're already showing a status divider in readOnly mode
     const showCategoryDivider =
       filters.filterCategory === null &&
-      (index === 0 ||
+      (index === 0 ? !showCompletedDivider :
         (prevAchievement && achievement.category !== prevAchievement.category));
 
     const categoryStats = showCategoryDivider
