@@ -16,16 +16,27 @@ export default function Home() {
             <span className="size-2 rounded-full bg-mii-sky-400" aria-hidden />
             Challenge run
           </span>
-          <a
-            href="/josplay"
-            className="inline-flex items-center gap-2 rounded-full bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-red-600 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
-          >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-white" />
-            </span>
-            Voir les SUCCES de Josplay
-          </a>
+          <div className="relative">
+            {/* Flèche rouge animée */}
+            <svg
+              className="absolute -left-28 top-1/2 -translate-y-1/2 w-24 h-12 text-red-500 animate-bounce pointer-events-none drop-shadow-lg"
+              viewBox="0 0 100 50"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M0 20 L70 20 L70 5 L100 25 L70 45 L70 30 L0 30 Z"/>
+            </svg>
+            <a
+              href="/josplay"
+              className="inline-flex items-center gap-2 rounded-full bg-red-500 px-4 py-2 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-red-600 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            >
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                <span className="relative inline-flex size-2 rounded-full bg-white" />
+              </span>
+              Voir les SUCCES de Josplay
+            </a>
+          </div>
         </div>
         <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-mii-ink sm:text-5xl">
           Succes Pokemon Heartgold & Soulsilver
