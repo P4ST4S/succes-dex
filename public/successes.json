@@ -101,5 +101,6 @@
   { "id": "blaine", "title": "Champion : Auguste", "description": "Vaincre Auguste, champion des Îles Écume, spécialiste des Pokémon Feu.", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "blue", "title": "Champion : Blue", "description": "Vaincre Blue, champion de Jadielle, maître des Pokémon de tous types.", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "danse-de-la-victoire", "title": "Danse de la victoire", "description": "Vaincre les Kimono Girls", "icon": "/icons/default.svg", "category": "Intrigue" },
-  { "id": "poste-piafabec", "title": "Poste Piafabec", "description": "Livrer la lettre du Piafabec", "icon": "/icons/default.svg", "category": "Quêtes" }
+  { "id": "poste-piafabec", "title": "Poste Piafabec", "description": "Livrer la lettre du Piafabec", "icon": "/icons/default.svg", "category": "Quêtes" },
+  { "id": "le-roi-des-carpe", "title": "Le roi des Carpe", "description": "Capturer le Magicarpe niveau 50", "icon": "/icons/default.svg", "category": "Pokémon" }
 ]
