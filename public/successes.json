@@ -103,5 +103,7 @@
   { "id": "danse-de-la-victoire", "title": "Danse de la victoire", "description": "Vaincre les Kimono Girls", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "poste-piafabec", "title": "Poste Piafabec", "description": "Livrer la lettre du Piafabec", "icon": "/icons/default.svg", "category": "Quêtes" },
   { "id": "le-roi-des-carpe", "title": "Le roi des Carpe", "description": "Capturer le Magicarpe niveau 50", "icon": "/icons/default.svg", "category": "Pokémon" },
-  { "id": "partage-dexperience",  "title": "Partage d’expérience",  "description": "Obtenir le Multi Exp",  "icon": "/icons/default.svg",  "category": "Collection" }
+  { "id": "partage-dexperience",  "title": "Partage d’expérience",  "description": "Obtenir le Multi Exp",  "icon": "/icons/default.svg",  "category": "Collection" },
+  { "id": "new-squeezie", "title": "Le nouveau Squeezie", "description": "Dépasser les 100 000 Pokédollars", "icon": "/icons/default.svg", "category": "Collection" },
+  { "id": "athlete-debutant", "title": "Athlète débutant", "description": "Participer à un mini-jeu du Pokéathlon", "icon": "/icons/default.svg", "category": "Divers" }
 ]
