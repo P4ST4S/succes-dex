@@ -105,5 +105,6 @@
   { "id": "athlete-debutant", "title": "Athlète débutant", "description": "Participer à un mini-jeu du Pokéathlon", "icon": "/icons/default.svg", "category": "Divers" },
   { "id": "premier-try", "title": "Premier try", "description": "Remporter la Ligue Pokémon pour la première fois", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "futur-maitre-johto", "title": "Futur Maître de Johto", "description": "Obtenir les 8 badges de Johto", "icon": "/icons/default.svg", "category": "Intrigue" },
-{ "id": "futur-maitre-kanto", "title": "Futur Maître de Kanto", "description": "Obtenir les 8 badges de Kanto", "icon": "/icons/default.svg", "category": "Intrigue" }
+  { "id": "futur-maitre-kanto", "title": "Futur Maître de Kanto", "description": "Obtenir les 8 badges de Kanto", "icon": "/icons/default.svg", "category": "Intrigue" },
+  { "id": "echange-du-jeu", "title": "Échange du jeu", "description": "Faire tous les échanges du jeu", "icon": "/icons/default.svg", "category": "Pokémon" }
 ]
