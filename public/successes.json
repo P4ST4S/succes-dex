@@ -106,5 +106,7 @@
   { "id": "premier-try", "title": "Premier try", "description": "Remporter la Ligue Pokémon pour la première fois", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "futur-maitre-johto", "title": "Futur Maître de Johto", "description": "Obtenir les 8 badges de Johto", "icon": "/icons/default.svg", "category": "Intrigue" },
   { "id": "futur-maitre-kanto", "title": "Futur Maître de Kanto", "description": "Obtenir les 8 badges de Kanto", "icon": "/icons/default.svg", "category": "Intrigue" },
-  { "id": "velo", "title": "Vélo", "description": "Utiliser le vélo pour la première fois", "icon": "/icons/default.svg", "category": "Divers" }
+  { "id": "velo", "title": "Vélo", "description": "Utiliser le vélo pour la première fois", "icon": "/icons/default.svg", "category": "Divers" },
+  { "id": "seigneur-des-abysses", "title": "Seigneur des abysses", "description": "Capturer Lugia", "icon": "/icons/default.svg", "category": "Pokémon" },
+  { "id": "relique-3g", "title": "Relique 3G", "description": "Capturer un Pokémon légendaire de la 3e génération", "icon": "/icons/default.svg", "category": "Pokémon" }
 ]
