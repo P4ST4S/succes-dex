@@ -109,5 +109,6 @@
   { "id": "velo", "title": "Vélo", "description": "Utiliser le vélo pour la première fois", "icon": "/icons/default.svg", "category": "Divers" },
   { "id": "seigneur-des-abysses", "title": "Seigneur des abysses", "description": "Capturer Lugia", "icon": "/icons/default.svg", "category": "Pokémon" },
   { "id": "relique-3g", "title": "Relique 3G", "description": "Capturer un Pokémon légendaire de la 3e génération", "icon": "/icons/default.svg", "category": "Pokémon" },
-  { "id": "pecheur-pro", "title": "Pêcheur Pro", "description": "Obtenir toutes les cannes à pêche", "icon": "/icons/default.svg", "category": "Collection" }
+  { "id": "pecheur-pro", "title": "Pêcheur Pro", "description": "Obtenir toutes les cannes à pêche", "icon": "/icons/default.svg", "category": "Collection" },
+  { "id": "âme-rouge", "title": "Âme Rouge", "description": "Capturer Latias", "icon": "/icons/default.svg", "category": "Pokémon" }
 ]
