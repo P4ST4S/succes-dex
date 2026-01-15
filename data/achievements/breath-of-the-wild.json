@@ -2,6 +2,7 @@
   "gameId": "breath-of-the-wild",
   "gameName": "The Legend of Zelda: Breath of the Wild",
   "version": "1.0.0",
+  "background": "/backgrounds/botw-bg.webp",
   "achievements": [
     {
       "id": "botw-001",

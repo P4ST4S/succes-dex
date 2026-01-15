@@ -2,6 +2,7 @@
   "gameId": "pokemon",
   "gameName": "Pokémon",
   "version": "1.0.0",
+  "background": "/backgrounds/pokemon-bg.webp",
   "achievements": [
     {
       "id": "pkmn-001",

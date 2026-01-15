@@ -17,13 +17,18 @@ export function GameCard({ game, progress }: GameCardProps) {
   return (
     <Link href={`/${game.slug}`} className="block group">
       <div className="glass-card overflow-hidden">
-        {/* Background gradient placeholder */}
+        {/* Background image */}
         <div
-          className="relative h-40 -mx-6 -mt-6 mb-4 overflow-hidden"
-          style={{ background: game.gradient }}
+          className="relative h-40 -mx-6 -mt-6 mb-4 overflow-hidden bg-cover bg-center"
+          style={{ 
+            backgroundImage: game.backgroundImage 
+              ? `url(${game.backgroundImage})` 
+              : game.gradient,
+            backgroundColor: game.themeColor 
+          }}
         >
           {/* Blur overlay for glassmorphism effect */}
-          <div className="absolute inset-0 backdrop-blur-sm bg-black/10" />
+          <div className="absolute inset-0 backdrop-blur-[1.5px] bg-black/5" />
 
           {/* Game title with iconic font */}
           <div className="absolute inset-0 flex items-center justify-center">

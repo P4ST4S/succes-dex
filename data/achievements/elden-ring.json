@@ -2,6 +2,7 @@
   "gameId": "elden-ring",
   "gameName": "Elden Ring",
   "version": "1.0.0",
+  "background": "/backgrounds/elden-ring-bg.webp",
   "achievements": [
     {
       "id": "er-001",

@@ -4,7 +4,8 @@ export interface GameMeta {
   slug: GameSlug;
   name: string;
   fontFamily: string;
-  gradient: string; // Gradient placeholder until images are added
+  gradient: string; // Gradient placeholder fallback
+  backgroundImage?: string; // Real background image
   themeColor: string;
   achievementCount: number;
 }
