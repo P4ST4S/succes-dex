@@ -1,102 +1,48 @@
-import { useState, useMemo } from "react";
-import type { Achievement, AchievementCategory } from "@/types/achievement";
-import { normalizeText } from "@/lib/text.utils";
-import { CATEGORY_ORDER } from "@/config/achievements.config";
+'use client';
 
-type FilterStatus = "all" | "completed" | "incomplete";
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useCallback, useMemo } from 'react';
 
-interface UseAchievementFiltersProps {
-  achievements: Achievement[];
-  completedSet: Set<string>;
-  readOnly?: boolean;
-}
+export type FilterStatus = 'all' | 'completed' | 'incomplete';
+export type SortOrder = 'default' | 'name' | 'category';
 
-export function useAchievementFilters({
-  achievements,
-  completedSet,
-  readOnly = false,
-}: UseAchievementFiltersProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filterStatus, setFilterStatus] = useState<FilterStatus>("all");
-  const [filterCategory, setFilterCategory] =
-    useState<AchievementCategory | null>(null);
+export function useAchievementFilters() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
-  const filteredAchievements = useMemo(() => {
-    let filtered = [...achievements];
+  const filters = useMemo(
+    () => ({
+      status: (searchParams.get('filter') as FilterStatus) || 'all',
+      sort: (searchParams.get('sort') as SortOrder) || 'default',
+      search: searchParams.get('search') || '',
+    }),
+    [searchParams]
+  );
 
-    // Filtrage par recherche
-    if (searchQuery.trim()) {
-      const normalizedQuery = normalizeText(searchQuery);
-      filtered = filtered.filter((achievement) => {
-        const normalizedTitle = normalizeText(achievement.title);
-        const normalizedDescription = normalizeText(achievement.description);
-        return (
-          normalizedTitle.includes(normalizedQuery) ||
-          normalizedDescription.includes(normalizedQuery)
-        );
-      });
-    }
+  const setFilter = useCallback(
+    (key: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
 
-    // Filtrage par statut
-    if (filterStatus === "completed") {
-      filtered = filtered.filter((a) => completedSet.has(a.id));
-    } else if (filterStatus === "incomplete") {
-      filtered = filtered.filter((a) => !completedSet.has(a.id));
-    }
+      if (value && value !== 'all' && value !== 'default') {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
 
-    // Filtrage par catégorie
-    if (filterCategory) {
-      filtered = filtered.filter((a) => a.category === filterCategory);
-    }
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, router, pathname]
+  );
 
-    // Tri
-    if (readOnly) {
-      filtered.sort((a, b) => {
-        // 1. Trier par statut (complétés en premier)
-        const aCompleted = completedSet.has(a.id);
-        const bCompleted = completedSet.has(b.id);
-        if (aCompleted !== bCompleted) {
-          return aCompleted ? -1 : 1;
-        }
-        // 2. Trier par catégorie
-        const categoryComparison =
-          CATEGORY_ORDER.indexOf(a.category) -
-          CATEGORY_ORDER.indexOf(b.category);
-        if (categoryComparison !== 0) {
-          return categoryComparison;
-        }
-        // 3. Trier par titre
-        return a.title.localeCompare(b.title);
-      });
-    } else {
-      filtered.sort((a, b) => {
-        const categoryComparison =
-          CATEGORY_ORDER.indexOf(a.category) -
-          CATEGORY_ORDER.indexOf(b.category);
-        if (categoryComparison !== 0) {
-          return categoryComparison;
-        }
-        return a.title.localeCompare(b.title);
-      });
-    }
-
-    return filtered;
-  }, [
-    achievements,
-    searchQuery,
-    filterStatus,
-    filterCategory,
-    completedSet,
-    readOnly,
-  ]);
+  const clearFilters = useCallback(() => {
+    router.push(pathname, { scroll: false });
+  }, [router, pathname]);
 
   return {
-    filteredAchievements,
-    searchQuery,
-    setSearchQuery,
-    filterStatus,
-    setFilterStatus,
-    filterCategory,
-    setFilterCategory,
+    ...filters,
+    setFilter,
+    clearFilters,
+    hasActiveFilters: filters.status !== 'all' || filters.sort !== 'default' || !!filters.search,
   };
 }

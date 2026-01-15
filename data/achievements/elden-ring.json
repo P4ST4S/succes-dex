@@ -1,0 +1,88 @@
+{
+  "gameId": "elden-ring",
+  "gameName": "Elden Ring",
+  "version": "1.0.0",
+  "achievements": [
+    {
+      "id": "er-001",
+      "name": "Sans-éclat",
+      "description": "Entrer dans les Terres Intermédiaires",
+      "category": "story",
+      "difficulty": "easy",
+      "points": 10
+    },
+    {
+      "id": "er-002",
+      "name": "Pourfendeur de Margit",
+      "description": "Vaincre Margit, le Supplice Décharné",
+      "category": "combat",
+      "difficulty": "medium",
+      "points": 50
+    },
+    {
+      "id": "er-003",
+      "name": "Seigneur de Limgrave",
+      "description": "Vaincre Godrick le Greffé",
+      "category": "combat",
+      "difficulty": "medium",
+      "points": 75
+    },
+    {
+      "id": "er-004",
+      "name": "Chasseur de Donjons",
+      "description": "Compléter 10 donjons mineurs",
+      "category": "exploration",
+      "difficulty": "medium",
+      "points": 60
+    },
+    {
+      "id": "er-005",
+      "name": "Collecteur de Souvenirs",
+      "description": "Obtenir 5 Souvenirs de boss majeurs",
+      "category": "collection",
+      "difficulty": "medium",
+      "points": 100
+    },
+    {
+      "id": "er-006",
+      "name": "Tueur de Dragons",
+      "description": "Vaincre un dragon de champ",
+      "category": "combat",
+      "difficulty": "medium",
+      "points": 80
+    },
+    {
+      "id": "er-007",
+      "name": "Roi des Étoiles",
+      "description": "Vaincre Radahn, Fléau des Étoiles",
+      "category": "combat",
+      "difficulty": "hard",
+      "points": 150
+    },
+    {
+      "id": "er-008",
+      "name": "Lame de Malenia",
+      "description": "Vaincre Malenia, Lame de Miquella",
+      "category": "combat",
+      "difficulty": "legendary",
+      "points": 300
+    },
+    {
+      "id": "er-009",
+      "name": "Seigneur Elden",
+      "description": "Obtenir la fin Seigneur Elden",
+      "category": "story",
+      "difficulty": "hard",
+      "points": 250
+    },
+    {
+      "id": "er-010",
+      "name": "Toutes les Fins",
+      "description": "Obtenir toutes les fins du jeu",
+      "category": "challenge",
+      "difficulty": "legendary",
+      "points": 500,
+      "hidden": true
+    }
+  ]
+}

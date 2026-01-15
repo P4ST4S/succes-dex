@@ -1,0 +1,88 @@
+{
+  "gameId": "breath-of-the-wild",
+  "gameName": "The Legend of Zelda: Breath of the Wild",
+  "version": "1.0.0",
+  "achievements": [
+    {
+      "id": "botw-001",
+      "name": "L'Éveil du Héros",
+      "description": "Sortir du Sanctuaire de la Renaissance",
+      "category": "story",
+      "difficulty": "easy",
+      "points": 10
+    },
+    {
+      "id": "botw-002",
+      "name": "Premier Sanctuaire",
+      "description": "Compléter un sanctuaire",
+      "category": "exploration",
+      "difficulty": "easy",
+      "points": 15
+    },
+    {
+      "id": "botw-003",
+      "name": "Paravoile Obtenu",
+      "description": "Obtenir le paravoile du roi",
+      "category": "story",
+      "difficulty": "easy",
+      "points": 25
+    },
+    {
+      "id": "botw-004",
+      "name": "Collectionneur de Sanctuaires",
+      "description": "Compléter 40 sanctuaires",
+      "category": "exploration",
+      "difficulty": "medium",
+      "points": 100
+    },
+    {
+      "id": "botw-005",
+      "name": "Maître des Sanctuaires",
+      "description": "Compléter les 120 sanctuaires",
+      "category": "exploration",
+      "difficulty": "hard",
+      "points": 250
+    },
+    {
+      "id": "botw-006",
+      "name": "Chasseur de Korogu",
+      "description": "Trouver 100 Korogus",
+      "category": "collection",
+      "difficulty": "medium",
+      "points": 75
+    },
+    {
+      "id": "botw-007",
+      "name": "Chasseur de Lynel",
+      "description": "Vaincre un Lynel Argenté",
+      "category": "combat",
+      "difficulty": "hard",
+      "points": 150
+    },
+    {
+      "id": "botw-008",
+      "name": "Libérateur des Créatures Divines",
+      "description": "Libérer les 4 Créatures Divines",
+      "category": "story",
+      "difficulty": "medium",
+      "points": 200
+    },
+    {
+      "id": "botw-009",
+      "name": "Sauveur d'Hyrule",
+      "description": "Vaincre Ganon",
+      "category": "story",
+      "difficulty": "medium",
+      "points": 300
+    },
+    {
+      "id": "botw-010",
+      "name": "Photographe Accompli",
+      "description": "Compléter le Compendium d'Hyrule",
+      "category": "collection",
+      "difficulty": "legendary",
+      "points": 400,
+      "hidden": true
+    }
+  ]
+}
