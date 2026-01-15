@@ -1,30 +1,23 @@
-export type AchievementCategory =
-  | 'story'
-  | 'exploration'
-  | 'combat'
-  | 'collection'
-  | 'challenge'
-  | 'secret'
-  | 'multiplayer';
-
-export type AchievementDifficulty = 'easy' | 'medium' | 'hard' | 'legendary';
+export interface CategoryDefinition {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+}
 
 export interface Achievement {
   id: string;
-  name: string;
+  title: string;
   description: string;
-  category: AchievementCategory;
-  difficulty?: AchievementDifficulty;
-  icon?: string;
-  points?: number;
-  hidden?: boolean;
-  prerequisiteIds?: string[];
+  category: string;
 }
 
 export interface AchievementData {
   gameId: string;
   gameName: string;
   version: string;
+  background?: string;
+  categories: CategoryDefinition[];
   achievements: Achievement[];
 }
 

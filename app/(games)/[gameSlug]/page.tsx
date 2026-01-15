@@ -11,7 +11,7 @@ import type { GameSlug } from '@/types/game';
 
 interface GamePageProps {
   params: Promise<{ gameSlug: string }>;
-  searchParams: Promise<{ filter?: string }>;
+  searchParams: Promise<{ filter?: string; category?: string; search?: string }>;
 }
 
 function AchievementsSkeleton() {
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: GamePageProps) {
 
 export default async function GamePage({ params, searchParams }: GamePageProps) {
   const { gameSlug } = await params;
-  const { filter } = await searchParams;
+  const { filter, category, search } = await searchParams;
 
   if (!isValidGameSlug(gameSlug)) {
     notFound();
@@ -68,21 +68,26 @@ export default async function GamePage({ params, searchParams }: GamePageProps) 
   };
 
   const filterStatus = (filter as 'all' | 'completed' | 'incomplete') || 'all';
+  const categoryFilter = category || 'all';
+  const searchQuery = search || '';
 
   return (
     <main className="min-h-screen p-6 md:p-8 lg:p-12">
       <div className="max-w-5xl mx-auto">
         <GameHeader game={game} progress={progress} session={session} />
 
-        <FilterBar />
+        <FilterBar categories={achievementData.categories} />
 
         <Suspense fallback={<AchievementsSkeleton />}>
           <AchievementGrid
             achievements={achievementData.achievements}
+            categories={achievementData.categories}
             gameSlug={gameSlug}
             completions={completionMap}
             isAdmin={session?.isAdmin ?? false}
             filter={filterStatus}
+            categoryFilter={categoryFilter}
+            searchQuery={searchQuery}
           />
         </Suspense>
       </div>

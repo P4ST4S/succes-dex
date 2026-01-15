@@ -3,87 +3,350 @@
   "gameName": "Elden Ring",
   "version": "1.0.0",
   "background": "/backgrounds/elden-ring-bg.webp",
+  "categories": [
+    {
+      "id": "story",
+      "name": "Histoire",
+      "icon": "scroll",
+      "color": "#F59E0B"
+    },
+    {
+      "id": "combat",
+      "name": "Combat",
+      "icon": "sword",
+      "color": "#EF4444"
+    },
+    {
+      "id": "exploration",
+      "name": "Exploration",
+      "icon": "map",
+      "color": "#22C55E"
+    },
+    {
+      "id": "completion",
+      "name": "Complétion",
+      "icon": "treasure",
+      "color": "#8B5CF6"
+    },
+    {
+      "id": "challenge",
+      "name": "Challenge",
+      "icon": "trophy",
+      "color": "#F97316"
+    },
+    {
+      "id": "misc",
+      "name": "Divers",
+      "icon": "star",
+      "color": "#EC4899"
+    }
+  ],
   "achievements": [
     {
-      "id": "er-001",
-      "name": "Sans-éclat",
+      "id": "er-story-001",
+      "title": "Sans-éclat",
       "description": "Entrer dans les Terres Intermédiaires",
-      "category": "story",
-      "difficulty": "easy",
-      "points": 10
+      "category": "story"
     },
     {
-      "id": "er-002",
-      "name": "Pourfendeur de Margit",
-      "description": "Vaincre Margit, le Supplice Décharné",
-      "category": "combat",
-      "difficulty": "medium",
-      "points": 50
+      "id": "er-story-002",
+      "title": "Guidé par la Grâce",
+      "description": "Atteindre la Table Ronde",
+      "category": "story"
     },
     {
-      "id": "er-003",
-      "name": "Seigneur de Limgrave",
-      "description": "Vaincre Godrick le Greffé",
-      "category": "combat",
-      "difficulty": "medium",
-      "points": 75
+      "id": "er-story-003",
+      "title": "Premier Éclat",
+      "description": "Obtenir une Grande Rune",
+      "category": "story"
     },
     {
-      "id": "er-004",
-      "name": "Chasseur de Donjons",
-      "description": "Compléter 10 donjons mineurs",
-      "category": "exploration",
-      "difficulty": "medium",
-      "points": 60
+      "id": "er-story-004",
+      "title": "Élu des Deux Doigts",
+      "description": "Activer une Grande Rune à une Tour Divine",
+      "category": "story"
     },
     {
-      "id": "er-005",
-      "name": "Collecteur de Souvenirs",
-      "description": "Obtenir 5 Souvenirs de boss majeurs",
-      "category": "collection",
-      "difficulty": "medium",
-      "points": 100
+      "id": "er-story-005",
+      "title": "Chemin de l'Erdtree",
+      "description": "Atteindre le Leyndell, Capitale Royale",
+      "category": "story"
     },
     {
-      "id": "er-006",
-      "name": "Tueur de Dragons",
-      "description": "Vaincre un dragon de champ",
-      "category": "combat",
-      "difficulty": "medium",
-      "points": 80
+      "id": "er-story-006",
+      "title": "Cendres du Passé",
+      "description": "Atteindre Farum Azula",
+      "category": "story"
     },
     {
-      "id": "er-007",
-      "name": "Roi des Étoiles",
-      "description": "Vaincre Radahn, Fléau des Étoiles",
-      "category": "combat",
-      "difficulty": "hard",
-      "points": 150
-    },
-    {
-      "id": "er-008",
-      "name": "Lame de Malenia",
-      "description": "Vaincre Malenia, Lame de Miquella",
-      "category": "combat",
-      "difficulty": "legendary",
-      "points": 300
-    },
-    {
-      "id": "er-009",
-      "name": "Seigneur Elden",
+      "id": "er-story-007",
+      "title": "Seigneur Elden",
       "description": "Obtenir la fin Seigneur Elden",
-      "category": "story",
-      "difficulty": "hard",
-      "points": 250
+      "category": "story"
     },
     {
-      "id": "er-010",
-      "name": "Toutes les Fins",
+      "id": "er-story-008",
+      "title": "Seigneur des Flammes Frénétiques",
+      "description": "Obtenir la fin des Flammes Frénétiques",
+      "category": "story"
+    },
+    {
+      "id": "er-story-009",
+      "title": "Âge des Étoiles",
+      "description": "Obtenir la fin de l'Âge des Étoiles",
+      "category": "story"
+    },
+    {
+      "id": "er-combat-001",
+      "title": "Pourfendeur de Margit",
+      "description": "Vaincre Margit, le Supplice Décharné",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-002",
+      "title": "Seigneur de Limgrave",
+      "description": "Vaincre Godrick le Greffé",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-003",
+      "title": "Reine de la Pleine Lune",
+      "description": "Vaincre Rennala, Reine de la Pleine Lune",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-004",
+      "title": "Roi des Étoiles",
+      "description": "Vaincre Radahn, Fléau des Étoiles",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-005",
+      "title": "Champion du Volcan",
+      "description": "Vaincre Rykard, Seigneur du Blasphème",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-006",
+      "title": "Monarque Sanglant",
+      "description": "Vaincre Mohg, Seigneur du Sang",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-007",
+      "title": "Lame de Malenia",
+      "description": "Vaincre Malenia, Lame de Miquella",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-008",
+      "title": "Morgott Terrassé",
+      "description": "Vaincre Morgott, le Roi des Présages",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-009",
+      "title": "Bête du Feu",
+      "description": "Vaincre le Géant de Feu",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-010",
+      "title": "Guerrier de Maliketh",
+      "description": "Vaincre Maliketh, la Lame Noire",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-011",
+      "title": "Dragon de Glace",
+      "description": "Vaincre le Dragon Ancien Lansseax",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-012",
+      "title": "Tueur de Dragons",
+      "description": "Vaincre un dragon de champ",
+      "category": "combat"
+    },
+    {
+      "id": "er-combat-013",
+      "title": "Chasseur de Nuit",
+      "description": "Vaincre un boss de cavalier de la nuit",
+      "category": "combat"
+    },
+    {
+      "id": "er-exploration-001",
+      "title": "Découvreur de Limgrave",
+      "description": "Explorer entièrement Limgrave",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-002",
+      "title": "Voyageur de Liurnia",
+      "description": "Explorer entièrement Liurnia",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-003",
+      "title": "Aventurier de Caelid",
+      "description": "Explorer entièrement Caelid",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-004",
+      "title": "Grimpeur de l'Altus",
+      "description": "Atteindre le Plateau d'Altus",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-005",
+      "title": "Pionnier du Mont Gelmir",
+      "description": "Explorer le Mont Gelmir",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-006",
+      "title": "Voyageur des Cimes",
+      "description": "Atteindre les Cimes des Géants",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-007",
+      "title": "Profondeurs Obscures",
+      "description": "Atteindre les Profondeurs d'Ainsel",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-008",
+      "title": "Lac Pourrissant",
+      "description": "Atteindre le Lac de Pourriture",
+      "category": "exploration"
+    },
+    {
+      "id": "er-exploration-009",
+      "title": "Chasseur de Donjons",
+      "description": "Compléter 10 donjons mineurs",
+      "category": "exploration"
+    },
+    {
+      "id": "er-completion-001",
+      "title": "Collecteur de Souvenirs",
+      "description": "Obtenir 5 Souvenirs de boss majeurs",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-002",
+      "title": "Arsenal Légendaire",
+      "description": "Obtenir toutes les armes légendaires",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-003",
+      "title": "Maître des Talismans",
+      "description": "Obtenir tous les talismans légendaires",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-004",
+      "title": "Magie Ancestrale",
+      "description": "Obtenir toutes les sorcelleries légendaires",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-005",
+      "title": "Foi Inébranlable",
+      "description": "Obtenir toutes les incantations légendaires",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-006",
+      "title": "Armurerie Complète",
+      "description": "Obtenir toutes les armures légendaires",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-007",
+      "title": "Cendres de Guerre",
+      "description": "Collecter 50 cendres de guerre",
+      "category": "completion"
+    },
+    {
+      "id": "er-completion-008",
+      "title": "Esprits Invoqués",
+      "description": "Collecter 30 esprits invoqués",
+      "category": "completion"
+    },
+    {
+      "id": "er-challenge-001",
+      "title": "Sans Mourir",
+      "description": "Tuer un boss majeur sans mourir",
+      "category": "challenge"
+    },
+    {
+      "id": "er-challenge-002",
+      "title": "Niveau 1",
+      "description": "Tuer un boss majeur au niveau 1",
+      "category": "challenge"
+    },
+    {
+      "id": "er-challenge-003",
+      "title": "Toutes les Fins",
       "description": "Obtenir toutes les fins du jeu",
-      "category": "challenge",
-      "difficulty": "legendary",
-      "points": 500,
-      "hidden": true
+      "category": "challenge"
+    },
+    {
+      "id": "er-challenge-004",
+      "title": "Platine",
+      "description": "Obtenir tous les trophées du jeu",
+      "category": "challenge"
+    },
+    {
+      "id": "er-misc-001",
+      "title": "Premiers Rubis",
+      "description": "Posséder 10 000 runes",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-002",
+      "title": "Fortune",
+      "description": "Posséder 100 000 runes",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-003",
+      "title": "Millionnaire",
+      "description": "Posséder 1 000 000 runes",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-004",
+      "title": "Premier Compagnon",
+      "description": "Invoquer un esprit pour la première fois",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-005",
+      "title": "Torrent",
+      "description": "Invoquer Torrent pour la première fois",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-006",
+      "title": "Amélioration",
+      "description": "Améliorer une arme au niveau +10",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-007",
+      "title": "Forgeron Expert",
+      "description": "Améliorer une arme au niveau maximum",
+      "category": "misc"
+    },
+    {
+      "id": "er-misc-008",
+      "title": "Maître des Esprits",
+      "description": "Améliorer un esprit au niveau +10",
+      "category": "misc"
     }
   ]
 }

@@ -3,12 +3,12 @@ import type { GameMeta, GameSlug } from '@/types/game';
 export const GAMES: GameMeta[] = [
   {
     slug: 'pokemon',
-    name: 'Pokémon',
+    name: 'Pokemon',
     fontFamily: 'var(--font-pokemon)',
     gradient: 'linear-gradient(135deg, #FFCB05 0%, #3D7DCA 50%, #003A70 100%)',
     backgroundImage: '/backgrounds/pokemon-bg.webp',
     themeColor: '#FFCB05',
-    achievementCount: 10, // Will be updated based on JSON
+    achievementCount: 25,
   },
   {
     slug: 'breath-of-the-wild',
@@ -17,7 +17,7 @@ export const GAMES: GameMeta[] = [
     gradient: 'linear-gradient(135deg, #1B813E 0%, #8BC34A 50%, #4CAF50 100%)',
     backgroundImage: '/backgrounds/botw-bg.webp',
     themeColor: '#1B813E',
-    achievementCount: 10,
+    achievementCount: 105,
   },
   {
     slug: 'elden-ring',
@@ -26,7 +26,7 @@ export const GAMES: GameMeta[] = [
     gradient: 'linear-gradient(135deg, #C5A036 0%, #8B7355 50%, #2C2416 100%)',
     backgroundImage: '/backgrounds/elden-ring-bg.webp',
     themeColor: '#C5A036',
-    achievementCount: 10,
+    achievementCount: 52,
   },
 ];
 

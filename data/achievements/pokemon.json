@@ -3,87 +3,188 @@
   "gameName": "Pokémon",
   "version": "1.0.0",
   "background": "/backgrounds/pokemon-bg.webp",
+  "categories": [
+    {
+      "id": "story",
+      "name": "Histoire",
+      "icon": "book",
+      "color": "#3B82F6"
+    },
+    {
+      "id": "collection",
+      "name": "Collection",
+      "icon": "pokeball",
+      "color": "#8B5CF6"
+    },
+    {
+      "id": "exploration",
+      "name": "Exploration",
+      "icon": "map",
+      "color": "#22C55E"
+    },
+    {
+      "id": "challenge",
+      "name": "Challenge",
+      "icon": "trophy",
+      "color": "#F97316"
+    },
+    {
+      "id": "misc",
+      "name": "Divers",
+      "icon": "star",
+      "color": "#EC4899"
+    }
+  ],
   "achievements": [
     {
-      "id": "pkmn-001",
-      "name": "Premier Pas",
+      "id": "pkmn-story-001",
+      "title": "Premier Pas",
       "description": "Choisir son premier Pokémon starter",
-      "category": "story",
-      "difficulty": "easy",
-      "points": 10
+      "category": "story"
     },
     {
-      "id": "pkmn-002",
-      "name": "Collectionneur Novice",
-      "description": "Capturer 10 Pokémon différents",
-      "category": "collection",
-      "difficulty": "easy",
-      "points": 25
-    },
-    {
-      "id": "pkmn-003",
-      "name": "Premier Badge",
+      "id": "pkmn-story-002",
+      "title": "Premier Badge",
       "description": "Obtenir son premier badge d'arène",
-      "category": "story",
-      "difficulty": "easy",
-      "points": 30
+      "category": "story"
     },
     {
-      "id": "pkmn-004",
-      "name": "Évolution Réussie",
-      "description": "Faire évoluer un Pokémon pour la première fois",
-      "category": "collection",
-      "difficulty": "easy",
-      "points": 20
-    },
-    {
-      "id": "pkmn-005",
-      "name": "Explorateur",
-      "description": "Visiter 5 villes différentes",
-      "category": "exploration",
-      "difficulty": "easy",
-      "points": 25
-    },
-    {
-      "id": "pkmn-006",
-      "name": "Champion de la Ligue",
-      "description": "Battre la Ligue Pokémon pour la première fois",
-      "category": "story",
-      "difficulty": "medium",
-      "points": 100
-    },
-    {
-      "id": "pkmn-007",
-      "name": "Maître des 8 Badges",
+      "id": "pkmn-story-003",
+      "title": "Maître des 8 Badges",
       "description": "Obtenir les 8 badges d'arène",
-      "category": "story",
-      "difficulty": "medium",
-      "points": 150
+      "category": "story"
     },
     {
-      "id": "pkmn-008",
-      "name": "Shiny Inattendu",
-      "description": "Rencontrer un Pokémon shiny sauvage",
-      "category": "secret",
-      "difficulty": "legendary",
-      "points": 200,
-      "hidden": true
+      "id": "pkmn-story-004",
+      "title": "Champion de la Ligue",
+      "description": "Battre la Ligue Pokémon pour la première fois",
+      "category": "story"
     },
     {
-      "id": "pkmn-009",
-      "name": "Pokédex Complet",
+      "id": "pkmn-story-005",
+      "title": "Nouvelle Aventure",
+      "description": "Accéder à la région post-game",
+      "category": "story"
+    },
+    {
+      "id": "pkmn-collection-001",
+      "title": "Collectionneur Novice",
+      "description": "Capturer 10 Pokémon différents",
+      "category": "collection"
+    },
+    {
+      "id": "pkmn-collection-002",
+      "title": "Collectionneur Amateur",
+      "description": "Capturer 50 Pokémon différents",
+      "category": "collection"
+    },
+    {
+      "id": "pkmn-collection-003",
+      "title": "Collectionneur Expert",
+      "description": "Capturer 100 Pokémon différents",
+      "category": "collection"
+    },
+    {
+      "id": "pkmn-collection-004",
+      "title": "Pokédex Complet",
       "description": "Compléter le Pokédex régional",
-      "category": "collection",
-      "difficulty": "hard",
-      "points": 300
+      "category": "collection"
     },
     {
-      "id": "pkmn-010",
-      "name": "Légende Capturée",
+      "id": "pkmn-collection-005",
+      "title": "Évolution Réussie",
+      "description": "Faire évoluer un Pokémon pour la première fois",
+      "category": "collection"
+    },
+    {
+      "id": "pkmn-collection-006",
+      "title": "Évolutionniste",
+      "description": "Faire évoluer 20 Pokémon différents",
+      "category": "collection"
+    },
+    {
+      "id": "pkmn-collection-007",
+      "title": "Légende Capturée",
       "description": "Capturer un Pokémon légendaire",
-      "category": "challenge",
-      "difficulty": "hard",
-      "points": 150
+      "category": "collection"
+    },
+    {
+      "id": "pkmn-exploration-001",
+      "title": "Explorateur",
+      "description": "Visiter 5 villes différentes",
+      "category": "exploration"
+    },
+    {
+      "id": "pkmn-exploration-002",
+      "title": "Globe-Trotter",
+      "description": "Visiter toutes les villes de la région",
+      "category": "exploration"
+    },
+    {
+      "id": "pkmn-exploration-003",
+      "title": "Spéléologue",
+      "description": "Explorer toutes les grottes de la région",
+      "category": "exploration"
+    },
+    {
+      "id": "pkmn-exploration-004",
+      "title": "Surfeur",
+      "description": "Utiliser Surf pour la première fois",
+      "category": "exploration"
+    },
+    {
+      "id": "pkmn-challenge-001",
+      "title": "Shiny Inattendu",
+      "description": "Rencontrer un Pokémon shiny sauvage",
+      "category": "challenge"
+    },
+    {
+      "id": "pkmn-challenge-002",
+      "title": "Chasseur de Shiny",
+      "description": "Capturer 5 Pokémon shiny",
+      "category": "challenge"
+    },
+    {
+      "id": "pkmn-challenge-003",
+      "title": "Éleveur Parfait",
+      "description": "Obtenir un Pokémon avec 6 IV parfaits",
+      "category": "challenge"
+    },
+    {
+      "id": "pkmn-challenge-004",
+      "title": "Maître du Combat",
+      "description": "Gagner 50 combats en ligne",
+      "category": "challenge"
+    },
+    {
+      "id": "pkmn-misc-001",
+      "title": "Millionnaire",
+      "description": "Accumuler 1 000 000 de Pokédollars",
+      "category": "misc"
+    },
+    {
+      "id": "pkmn-misc-002",
+      "title": "Photographe",
+      "description": "Prendre 50 photos de Pokémon",
+      "category": "misc"
+    },
+    {
+      "id": "pkmn-misc-003",
+      "title": "Cuisinier",
+      "description": "Préparer 20 recettes différentes",
+      "category": "misc"
+    },
+    {
+      "id": "pkmn-misc-004",
+      "title": "Fashionista",
+      "description": "Acheter 30 vêtements différents",
+      "category": "misc"
+    },
+    {
+      "id": "pkmn-misc-005",
+      "title": "Ami Fidèle",
+      "description": "Avoir un Pokémon avec le maximum d'amitié",
+      "category": "misc"
     }
   ]
 }

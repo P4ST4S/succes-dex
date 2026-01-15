@@ -1,25 +1,60 @@
 import { AchievementCard } from './AchievementCard';
-import type { Achievement } from '@/types/achievement';
+import type { Achievement, CategoryDefinition } from '@/types/achievement';
+
+// Normalize text for accent-insensitive search
+function normalizeText(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+}
 
 interface AchievementGridProps {
   achievements: Achievement[];
+  categories: CategoryDefinition[];
   gameSlug: string;
   completions: Map<string, boolean>;
   isAdmin: boolean;
   filter?: 'all' | 'completed' | 'incomplete';
+  categoryFilter?: string;
+  searchQuery?: string;
 }
 
 export function AchievementGrid({
   achievements,
+  categories,
   gameSlug,
   completions,
   isAdmin,
   filter = 'all',
+  categoryFilter = 'all',
+  searchQuery = '',
 }: AchievementGridProps) {
+  // Create a map for quick category lookup
+  const categoryMap = new Map(categories.map((c) => [c.id, c]));
+
+  // Normalize search query once
+  const normalizedSearch = normalizeText(searchQuery);
+
   const filteredAchievements = achievements.filter((achievement) => {
     const isCompleted = completions.get(achievement.id) ?? false;
-    if (filter === 'completed') return isCompleted;
-    if (filter === 'incomplete') return !isCompleted;
+
+    // Status filter
+    if (filter === 'completed' && !isCompleted) return false;
+    if (filter === 'incomplete' && isCompleted) return false;
+
+    // Category filter
+    if (categoryFilter !== 'all' && achievement.category !== categoryFilter) return false;
+
+    // Search filter (accent-insensitive and case-insensitive)
+    if (normalizedSearch) {
+      const normalizedTitle = normalizeText(achievement.title);
+      const normalizedDescription = normalizeText(achievement.description);
+      if (!normalizedTitle.includes(normalizedSearch) && !normalizedDescription.includes(normalizedSearch)) {
+        return false;
+      }
+    }
+
     return true;
   });
 
@@ -36,13 +71,15 @@ export function AchievementGrid({
             />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold mb-2">Aucun succès trouvé</h3>
+        <h3 className="text-lg font-semibold mb-2">Aucun succes trouve</h3>
         <p className="text-foreground/60">
-          {filter === 'completed'
-            ? 'Aucun succès complété pour le moment'
-            : filter === 'incomplete'
-              ? 'Tous les succès sont déjà complétés !'
-              : 'Aucun succès disponible'}
+          {searchQuery
+            ? 'Aucun succes ne correspond a votre recherche'
+            : filter === 'completed'
+              ? 'Aucun succes complete pour le moment'
+              : filter === 'incomplete'
+                ? 'Tous les succes sont deja completes !'
+                : 'Aucun succes disponible'}
         </p>
       </div>
     );
@@ -57,6 +94,7 @@ export function AchievementGrid({
           gameSlug={gameSlug}
           completed={completions.get(achievement.id) ?? false}
           isAdmin={isAdmin}
+          categoryInfo={categoryMap.get(achievement.category)}
         />
       ))}
     </div>
