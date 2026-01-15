@@ -8,7 +8,7 @@ export const GAMES: GameMeta[] = [
     gradient: 'linear-gradient(135deg, #FFCB05 0%, #3D7DCA 50%, #003A70 100%)',
     backgroundImage: '/backgrounds/pokemon-bg.webp',
     themeColor: '#FFCB05',
-    achievementCount: 25,
+    achievementCount: 113,
   },
   {
     slug: 'breath-of-the-wild',

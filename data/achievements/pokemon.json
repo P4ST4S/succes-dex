@@ -5,186 +5,714 @@
   "background": "/backgrounds/pokemon-bg.webp",
   "categories": [
     {
-      "id": "story",
-      "name": "Histoire",
-      "icon": "book",
+      "id": "intrigue",
+      "name": "Intrigue",
+      "icon": "scroll",
       "color": "#3B82F6"
     },
     {
-      "id": "collection",
-      "name": "Collection",
+      "id": "pokemon",
+      "name": "Pokemon",
       "icon": "pokeball",
-      "color": "#8B5CF6"
+      "color": "#EF4444"
     },
     {
-      "id": "exploration",
-      "name": "Exploration",
+      "id": "quetes",
+      "name": "Quetes",
       "icon": "map",
       "color": "#22C55E"
     },
     {
-      "id": "challenge",
-      "name": "Challenge",
-      "icon": "trophy",
-      "color": "#F97316"
+      "id": "collection",
+      "name": "Collection",
+      "icon": "treasure",
+      "color": "#8B5CF6"
     },
     {
-      "id": "misc",
+      "id": "divers",
       "name": "Divers",
       "icon": "star",
-      "color": "#EC4899"
+      "color": "#F97316"
     }
   ],
   "achievements": [
     {
-      "id": "pkmn-story-001",
-      "title": "Premier Pas",
-      "description": "Choisir son premier Pokémon starter",
-      "category": "story"
+      "id": "agent-double",
+      "title": "Agent double",
+      "description": "Obtenir et enfiler la tenue Rocket",
+      "category": "quetes"
     },
     {
-      "id": "pkmn-story-002",
-      "title": "Premier Badge",
-      "description": "Obtenir son premier badge d'arène",
-      "category": "story"
+      "id": "athlete-supreme",
+      "title": "Athlete supreme",
+      "description": "TOP 1 sur les mini jeux du pokeathlons",
+      "category": "divers"
     },
     {
-      "id": "pkmn-story-003",
-      "title": "Maître des 8 Badges",
-      "description": "Obtenir les 8 badges d'arène",
-      "category": "story"
+      "id": "attrapeur-en-serie-2",
+      "title": "Attrapeur en serie II",
+      "description": "Capturer 100 Pokemons",
+      "category": "pokemon"
     },
     {
-      "id": "pkmn-story-004",
-      "title": "Champion de la Ligue",
-      "description": "Battre la Ligue Pokémon pour la première fois",
-      "category": "story"
+      "id": "collectionneur-de-badges",
+      "title": "Collectionneur de badges",
+      "description": "Avoir les 16 Badges",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-story-005",
-      "title": "Nouvelle Aventure",
-      "description": "Accéder à la région post-game",
-      "category": "story"
+      "id": "tour-de-combat",
+      "title": "Tour de Combat",
+      "description": "Battre au moins un boss d'une des tours de combat",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-collection-001",
-      "title": "Collectionneur Novice",
-      "description": "Capturer 10 Pokémon différents",
+      "id": "cache-cache-marin",
+      "title": "Cache-cache marin",
+      "description": "Jouer a cache-cache avec la petite sur le bateau",
+      "category": "divers"
+    },
+    {
+      "id": "vieux-poireau",
+      "title": "Vieux poireau",
+      "description": "Aider le vieux avec les Canarticho",
+      "category": "quetes"
+    },
+    {
+      "id": "il-sera-utile",
+      "title": "Il sera utile",
+      "description": "Obtenir le Carapuce a 0",
+      "category": "pokemon"
+    },
+    {
+      "id": "jackpot",
+      "title": "Jackpot",
+      "description": "Acheter un Pokemon au casino",
+      "category": "pokemon"
+    },
+    {
+      "id": "cest-nike",
+      "title": "C'est Nike",
+      "description": "Debloquer les chaussures de sport",
+      "category": "intrigue"
+    },
+    {
+      "id": "vieille-feuille",
+      "title": "Vieille feuille",
+      "description": "Battre l'ancien de la tour Chetiflor",
+      "category": "intrigue"
+    },
+    {
+      "id": "bien-peigne",
+      "title": "Bien peigne",
+      "description": "Faire une coupe de cheveux a un Pokemon",
       "category": "collection"
     },
     {
-      "id": "pkmn-collection-002",
-      "title": "Collectionneur Amateur",
-      "description": "Capturer 50 Pokémon différents",
+      "id": "cleptomane",
+      "title": "Cleptomane",
+      "description": "Voler un objet a un Pokemon",
+      "category": "pokemon"
+    },
+    {
+      "id": "pas-si-colosse",
+      "title": "Pas si colosse",
+      "description": "Tuer le Dracolosse de Peter lors du combat double",
+      "category": "pokemon"
+    },
+    {
+      "id": "double-frappe",
+      "title": "Double frappe",
+      "description": "Faire 2 coups critiques d'affilee",
+      "category": "pokemon"
+    },
+    {
+      "id": "cest-le-max",
+      "title": "C'est le max !",
+      "description": "Avoir un Pokemon niveau 100",
+      "category": "pokemon"
+    },
+    {
+      "id": "styliste",
+      "title": "Styliste",
+      "description": "Decorer un Pokemon",
       "category": "collection"
     },
     {
-      "id": "pkmn-collection-003",
-      "title": "Collectionneur Expert",
-      "description": "Capturer 100 Pokémon différents",
+      "id": "tour-des-maitres",
+      "title": "Tour des Maitres",
+      "description": "Raffronter tous les champions au Dojo de Combat",
+      "category": "intrigue"
+    },
+    {
+      "id": "je-sais-accueillir",
+      "title": "Je sais accueillir",
+      "description": "Avoir tous les pokemons donnes",
+      "category": "pokemon"
+    },
+    {
+      "id": "pro-du-troc",
+      "title": "Pro du troc",
+      "description": "Faire les 10 echanges possibles",
+      "category": "quetes"
+    },
+    {
+      "id": "gare-aux-coups-de-jus",
+      "title": "Gare aux coups de jus",
+      "description": "Quete secondaire centrale electrique",
+      "category": "quetes"
+    },
+    {
+      "id": "le-chien-bleu",
+      "title": "Le chien bleu",
+      "description": "Finir la quete d'Eusine",
+      "category": "quetes"
+    },
+    {
+      "id": "de-or-et-de-feuille",
+      "title": "De d'or et de feuille",
+      "description": "Faire la couronne d'or avec les 5 feuilles",
+      "category": "quetes"
+    },
+    {
+      "id": "forme-finale",
+      "title": "Forme finale",
+      "description": "Evolution finale du starter",
+      "category": "pokemon"
+    },
+    {
+      "id": "justice-de-nuit",
+      "title": "Justice de Nuit",
+      "description": "Battre tous les flics du jeu",
+      "category": "intrigue"
+    },
+    {
+      "id": "archeologue-en-herbe",
+      "title": "Archeologue en herbe",
+      "description": "Avoir un fossile",
+      "category": "pokemon"
+    },
+    {
+      "id": "le-vieux-fuji",
+      "title": "Le vieux Fuji",
+      "description": "Parler au Mr Fuji",
+      "category": "quetes"
+    },
+    {
+      "id": "nostalgie",
+      "title": "Nostalgie",
+      "description": "Changer l'OST pour mettre celle de la Gameboy",
+      "category": "divers"
+    },
+    {
+      "id": "le-boss-cest-moi",
+      "title": "Le boss c'est moi",
+      "description": "Rebattre Giovanni",
+      "category": "intrigue"
+    },
+    {
+      "id": "pro-du-filet",
+      "title": "Pro du filet",
+      "description": "TOP 1 dans la chasse aux insectes",
+      "category": "divers"
+    },
+    {
+      "id": "nouveau-monde",
+      "title": "Nouveau monde",
+      "description": "Debloquer la region de Kanto",
+      "category": "intrigue"
+    },
+    {
+      "id": "ou-est-leau",
+      "title": "Ou est l'eau ?",
+      "description": "Voir le Lac colere sans eau",
+      "category": "divers"
+    },
+    {
+      "id": "duo-draconnier",
+      "title": "Duo draconnier",
+      "description": "Faire le combat double Lance et sa cousine",
+      "category": "divers"
+    },
+    {
+      "id": "majestueux",
+      "title": "Majestueux",
+      "description": "Assister a l'appel du Legendaire",
+      "category": "quetes"
+    },
+    {
+      "id": "rouge-vif",
+      "title": "Rouge vif",
+      "description": "Capturer le Leviator Rouge",
+      "category": "pokemon"
+    },
+    {
+      "id": "double-gloire",
+      "title": "Double gloire",
+      "description": "Battre la ligue 2 fois",
+      "category": "intrigue"
+    },
+    {
+      "id": "c-etait-un-vendredi",
+      "title": "C'etait un Vendredi",
+      "description": "Capturer Lokhlass",
+      "category": "pokemon"
+    },
+    {
+      "id": "le-combat-et-leau",
+      "title": "Le combat et l'eau",
+      "description": "Parler a Melina et Lovis",
+      "category": "quetes"
+    },
+    {
+      "id": "cest-dans-la-boite",
+      "title": "C'est dans la boite",
+      "description": "Raffronter un dresseur qui nous appelle.",
+      "category": "pokemon"
+    },
+    {
+      "id": "merci-moumoune",
+      "title": "Merci moumoune",
+      "description": "Obtenir un cadeau de Maman",
+      "category": "quetes"
+    },
+    {
+      "id": "les-deux-pour-moi",
+      "title": "Les deux pour moi",
+      "description": "Parler aux meres de Red et Blue",
+      "category": "quetes"
+    },
+    {
+      "id": "lultime-ball",
+      "title": "L'ultime ball",
+      "description": "Obtenir la Masterball",
       "category": "collection"
     },
     {
-      "id": "pkmn-collection-004",
-      "title": "Pokédex Complet",
-      "description": "Compléter le Pokédex régional",
+      "id": "sous-la-lune",
+      "title": "Sous la lune",
+      "description": "Avoir l'evenement des Melofee",
+      "category": "quetes"
+    },
+    {
+      "id": "parent-adoptif",
+      "title": "Parent adoptif",
+      "description": "Obtenir une petite evolution a la pension",
+      "category": "pokemon"
+    },
+    {
+      "id": "donne-moi-ton-lait",
+      "title": "Donne moi ton lait",
+      "description": "Soigner Ecremeuh",
+      "category": "quetes"
+    },
+    {
+      "id": "mini-mais-rapide",
+      "title": "Mini mais rapide",
+      "description": "Obtenir le Minidraco avec vitesse extreme",
+      "category": "pokemon"
+    },
+    {
+      "id": "voyage-en-mer",
+      "title": "Voyage en mer",
+      "description": "Prendre l'Oceane",
+      "category": "divers"
+    },
+    {
+      "id": "chanceux",
+      "title": "Chanceux",
+      "description": "Obtenir l'oeuf chance sur un Leveinard",
+      "category": "quetes"
+    },
+    {
+      "id": "nouveau-ne",
+      "title": "Nouveau ne",
+      "description": "Faire eclore un oeuf",
+      "category": "pokemon"
+    },
+    {
+      "id": "code-secret",
+      "title": "Code secret",
+      "description": "Obtenir un des 3 oeufs au centre de Mauville",
+      "category": "intrigue"
+    },
+    {
+      "id": "coeur-brise",
+      "title": "Coeur brise",
+      "description": "Ruiner le rencard d'Ondine",
+      "category": "quetes"
+    },
+    {
+      "id": "premiers-pas",
+      "title": "Premiers pas",
+      "description": "Obtenir le premier Pokemon",
+      "category": "intrigue"
+    },
+    {
+      "id": "remis-sur-pieds",
+      "title": "Remis sur pieds",
+      "description": "Soigner le Pharamp",
+      "category": "quetes"
+    },
+    {
+      "id": "souvenirs-de-johto",
+      "title": "Souvenirs de Johto",
+      "description": "Prendre les photos dans les 36 endroits differents",
       "category": "collection"
     },
     {
-      "id": "pkmn-collection-005",
-      "title": "Évolution Réussie",
-      "description": "Faire évoluer un Pokémon pour la première fois",
+      "id": "pas-une-ne-manque",
+      "title": "Pas une ne manque",
+      "description": "Avoir toutes les Pokeballs differentes",
       "category": "collection"
     },
     {
-      "id": "pkmn-collection-006",
-      "title": "Évolutionniste",
-      "description": "Faire évoluer 20 Pokémon différents",
+      "id": "laventure-commence",
+      "title": "L'aventure commence !",
+      "description": "Obtenir le Pokedex",
+      "category": "intrigue"
+    },
+    {
+      "id": "reveille-toi",
+      "title": "Reveille-toi !",
+      "description": "Utiliser la Pokeflute",
+      "category": "quetes"
+    },
+    {
+      "id": "jouet-retrouve",
+      "title": "Jouet retrouve",
+      "description": "Retrouver la poupee de la petite fille",
+      "category": "quetes"
+    },
+    {
+      "id": "le-cerveau-en-ruines",
+      "title": "Le cerveau en ruines",
+      "description": "Finir le puzzle zone Zarbi",
+      "category": "quetes"
+    },
+    {
+      "id": "sans-tricher",
+      "title": "Sans tricher !",
+      "description": "Reussir le quizz de la tour radio",
+      "category": "divers"
+    },
+    {
+      "id": "heros-contre-heros",
+      "title": "Heros contre Heros",
+      "description": "Battre Red",
+      "category": "intrigue"
+    },
+    {
+      "id": "adieu",
+      "title": "Adieu",
+      "description": "Relacher un Pokemon niveau 100",
+      "category": "pokemon"
+    },
+    {
+      "id": "rivalite-eternelle",
+      "title": "Rivalite eternelle",
+      "description": "Rebattre le rival apres la premiere ligue",
+      "category": "intrigue"
+    },
+    {
+      "id": "adieu-vermine",
+      "title": "Adieu vermine !",
+      "description": "Finir l'intrigue de la Team Rocket",
+      "category": "intrigue"
+    },
+    {
+      "id": "chasse-sauvage",
+      "title": "Chasse sauvage",
+      "description": "Faire un tour au Safari",
+      "category": "divers"
+    },
+    {
+      "id": "cest-le-bon",
+      "title": "C'est le bon !",
+      "description": "Capturer un Scarhino avec Coup d'boul",
+      "category": "pokemon"
+    },
+    {
+      "id": "il-brille",
+      "title": "Il brille !",
+      "description": "Avoir au moins 1 shiny (1/8192)",
+      "category": "pokemon"
+    },
+    {
+      "id": "pas-besoin-de-sherpas",
+      "title": "Pas besoin de Sherpas",
+      "description": "Aller au Mont Silver avec la neige en Diamant",
+      "category": "intrigue"
+    },
+    {
+      "id": "chemin-degage",
+      "title": "Chemin degage",
+      "description": "Debloquer la route du Simularbre",
+      "category": "intrigue"
+    },
+    {
+      "id": "herboriste",
+      "title": "Herboriste",
+      "description": "Acheter des objets de soin a base d'herbe dans le tunnel",
       "category": "collection"
     },
     {
-      "id": "pkmn-collection-007",
-      "title": "Légende Capturée",
-      "description": "Capturer un Pokémon légendaire",
+      "id": "starter-collection",
+      "title": "Starter Collection",
+      "description": "Avoir un starter 1G, 2G, 3G",
+      "category": "pokemon"
+    },
+    {
+      "id": "statu-quo",
+      "title": "Statu Quo",
+      "description": "Gagner un combat uniquement avec des attaques de statut",
+      "category": "pokemon"
+    },
+    {
+      "id": "premiere-vague",
+      "title": "Premiere vague",
+      "description": "Surfer pour la premiere fois",
+      "category": "divers"
+    },
+    {
+      "id": "bye-johto",
+      "title": "Bye Johto !",
+      "description": "Prendre le train Johto Kanto",
+      "category": "divers"
+    },
+    {
+      "id": "premier-vol",
+      "title": "Premier vol",
+      "description": "Vol pour la premiere fois",
+      "category": "divers"
+    },
+    {
+      "id": "trio-legendnaire",
+      "title": "Trio legendaire",
+      "description": "Liberer les chiens legendaires",
+      "category": "intrigue"
+    },
+    {
+      "id": "alphabet-vivant",
+      "title": "Alphabet vivant",
+      "description": "Capturer les 28 Zarbi",
+      "category": "pokemon"
+    },
+    {
+      "id": "dresseur-delite",
+      "title": "Dresseur d'elite",
+      "description": "Avoir les 16 Badges en Set mode",
+      "category": "intrigue"
+    },
+    {
+      "id": "arsenal-complet",
+      "title": "Arsenal complet",
+      "description": "Obtenir toutes les CS",
       "category": "collection"
     },
     {
-      "id": "pkmn-exploration-001",
-      "title": "Explorateur",
-      "description": "Visiter 5 villes différentes",
-      "category": "exploration"
+      "id": "falkner",
+      "title": "Champion : Albert",
+      "description": "Vaincre Albert, champion de Mauville, specialiste des Pokemon Vol.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-exploration-002",
-      "title": "Globe-Trotter",
-      "description": "Visiter toutes les villes de la région",
-      "category": "exploration"
+      "id": "bugsy",
+      "title": "Champion : Hector",
+      "description": "Vaincre Hector, champion d'Ecorcia, specialiste des Pokemon Insecte.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-exploration-003",
-      "title": "Spéléologue",
-      "description": "Explorer toutes les grottes de la région",
-      "category": "exploration"
+      "id": "whitney",
+      "title": "Championne : Blanche",
+      "description": "Vaincre Blanche, championne de Doublonville, specialiste des Pokemon Normal.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-exploration-004",
-      "title": "Surfeur",
-      "description": "Utiliser Surf pour la première fois",
-      "category": "exploration"
+      "id": "morty",
+      "title": "Champion : Mortimer",
+      "description": "Vaincre Mortimer, champion de Rosalia, specialiste des Pokemon Spectre.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-challenge-001",
-      "title": "Shiny Inattendu",
-      "description": "Rencontrer un Pokémon shiny sauvage",
-      "category": "challenge"
+      "id": "chuck",
+      "title": "Champion : Chuck",
+      "description": "Vaincre Chuck, champion d'Irisia, specialiste des Pokemon Combat.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-challenge-002",
-      "title": "Chasseur de Shiny",
-      "description": "Capturer 5 Pokémon shiny",
-      "category": "challenge"
+      "id": "jasmine",
+      "title": "Championne : Jasmine",
+      "description": "Vaincre Jasmine, championne d'Oliville, specialiste des Pokemon Acier.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-challenge-003",
-      "title": "Éleveur Parfait",
-      "description": "Obtenir un Pokémon avec 6 IV parfaits",
-      "category": "challenge"
+      "id": "pryce",
+      "title": "Champion : Fredo",
+      "description": "Vaincre Fredo, champion d'Acajou, specialiste des Pokemon Glace.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-challenge-004",
-      "title": "Maître du Combat",
-      "description": "Gagner 50 combats en ligne",
-      "category": "challenge"
+      "id": "clair",
+      "title": "Championne : Sandra",
+      "description": "Vaincre Sandra, championne d'Ebenelle, specialiste des Pokemon Dragon.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-misc-001",
-      "title": "Millionnaire",
-      "description": "Accumuler 1 000 000 de Pokédollars",
-      "category": "misc"
+      "id": "brock",
+      "title": "Champion : Pierre",
+      "description": "Vaincre Pierre, champion d'Argenta, specialiste des Pokemon Roche.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-misc-002",
-      "title": "Photographe",
-      "description": "Prendre 50 photos de Pokémon",
-      "category": "misc"
+      "id": "misty",
+      "title": "Championne : Ondine",
+      "description": "Vaincre Ondine, championne d'Azuria, specialiste des Pokemon Eau.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-misc-003",
-      "title": "Cuisinier",
-      "description": "Préparer 20 recettes différentes",
-      "category": "misc"
+      "id": "lt-surge",
+      "title": "Champion : Major Bob",
+      "description": "Vaincre Major Bob, champion de Carmin-sur-Mer, specialiste des Pokemon Electrik.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-misc-004",
-      "title": "Fashionista",
-      "description": "Acheter 30 vêtements différents",
-      "category": "misc"
+      "id": "erika",
+      "title": "Championne : Erika",
+      "description": "Vaincre Erika, championne de Celadopole, specialiste des Pokemon Plante.",
+      "category": "intrigue"
     },
     {
-      "id": "pkmn-misc-005",
-      "title": "Ami Fidèle",
-      "description": "Avoir un Pokémon avec le maximum d'amitié",
-      "category": "misc"
+      "id": "janine",
+      "title": "Championne : Jeannine",
+      "description": "Vaincre Jeannine, championne de Parmanie, specialiste des Pokemon Poison.",
+      "category": "intrigue"
+    },
+    {
+      "id": "sabrina",
+      "title": "Championne : Morgane",
+      "description": "Vaincre Morgane, championne de Safrania, specialiste des Pokemon Psy.",
+      "category": "intrigue"
+    },
+    {
+      "id": "blaine",
+      "title": "Champion : Auguste",
+      "description": "Vaincre Auguste, champion des Iles Ecume, specialiste des Pokemon Feu.",
+      "category": "intrigue"
+    },
+    {
+      "id": "blue",
+      "title": "Champion : Blue",
+      "description": "Vaincre Blue, champion de Jadielle, maitre des Pokemon de tous types.",
+      "category": "intrigue"
+    },
+    {
+      "id": "danse-de-la-victoire",
+      "title": "Danse de la victoire",
+      "description": "Vaincre les Kimono Girls",
+      "category": "intrigue"
+    },
+    {
+      "id": "poste-piafabec",
+      "title": "Poste Piafabec",
+      "description": "Livrer la lettre du Piafabec",
+      "category": "quetes"
+    },
+    {
+      "id": "le-roi-des-carpe",
+      "title": "Le roi des Carpe",
+      "description": "Capturer le Magicarpe niveau 50",
+      "category": "pokemon"
+    },
+    {
+      "id": "partage-dexperience",
+      "title": "Partage d'experience",
+      "description": "Obtenir le Multi Exp",
+      "category": "collection"
+    },
+    {
+      "id": "new-squeezie",
+      "title": "Le nouveau Squeezie",
+      "description": "Depasser les 100 000 Pokedollars",
+      "category": "collection"
+    },
+    {
+      "id": "athlete-debutant",
+      "title": "Athlete debutant",
+      "description": "Participer a un mini-jeu du Pokeathlon",
+      "category": "divers"
+    },
+    {
+      "id": "premier-try",
+      "title": "Premier try",
+      "description": "Remporter la Ligue Pokemon pour la premiere fois",
+      "category": "intrigue"
+    },
+    {
+      "id": "futur-maitre-johto",
+      "title": "Futur Maitre de Johto",
+      "description": "Obtenir les 8 badges de Johto",
+      "category": "intrigue"
+    },
+    {
+      "id": "futur-maitre-kanto",
+      "title": "Futur Maitre de Kanto",
+      "description": "Obtenir les 8 badges de Kanto",
+      "category": "intrigue"
+    },
+    {
+      "id": "velo",
+      "title": "Velo",
+      "description": "Utiliser le velo pour la premiere fois",
+      "category": "divers"
+    },
+    {
+      "id": "seigneur-des-abysses",
+      "title": "Seigneur des abysses",
+      "description": "Capturer Lugia",
+      "category": "pokemon"
+    },
+    {
+      "id": "relique-3g",
+      "title": "Relique 3G",
+      "description": "Capturer un Pokemon legendaire de la 3e generation",
+      "category": "pokemon"
+    },
+    {
+      "id": "pecheur-pro",
+      "title": "Pecheur Pro",
+      "description": "Obtenir toutes les cannes a peche",
+      "category": "collection"
+    },
+    {
+      "id": "ame-rouge",
+      "title": "Ame Rouge",
+      "description": "Capturer Latias",
+      "category": "pokemon"
+    },
+    {
+      "id": "carnet-dresseur",
+      "title": "Carnet de Dresseur",
+      "description": "Obtenir tous les numeros de telephone des champions de Johto et Kanto",
+      "category": "intrigue"
+    },
+    {
+      "id": "styliste-de-ball",
+      "title": "Styliste de Ball",
+      "description": "Personnaliser une Pokeball",
+      "category": "collection"
+    },
+    {
+      "id": "le-clone-parfait",
+      "title": "Le Clone Parfait",
+      "description": "Capturer Mewtwo",
+      "category": "pokemon"
+    },
+    {
+      "id": "shiny-inattendu",
+      "title": "Shiny inattendu",
+      "description": "Rencontrer un shiny totalement au hasard, en sauvage",
+      "category": "pokemon"
     }
   ]
 }
