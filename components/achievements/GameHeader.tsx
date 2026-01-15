@@ -50,12 +50,17 @@ export function GameHeader({ game, progress, session }: GameHeaderProps) {
         </div>
       </div>
 
-      {/* Game title with gradient background */}
+      {/* Game title with background image */}
       <div
-        className="relative rounded-2xl overflow-hidden p-8 mb-6"
-        style={{ background: game.gradient }}
+        className="relative rounded-2xl overflow-hidden p-8 mb-6 bg-cover bg-center"
+        style={{ 
+          backgroundImage: game.backgroundImage 
+            ? `url(${game.backgroundImage})` 
+            : game.gradient,
+          backgroundColor: game.themeColor 
+        }}
       >
-        <div className="absolute inset-0 backdrop-blur-sm bg-black/20" />
+        <div className="absolute inset-0 backdrop-blur-[1.5px] bg-black/5" />
         <div className="relative text-center">
           <h1
             className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg ${fontClass}`}
