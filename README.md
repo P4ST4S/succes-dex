@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Succes Dex
+
+A streamer achievement encyclopedia built with Next.js 16, featuring game-specific achievements with progress tracking.
+
+## Features
+
+- **Multi-game support** - Track achievements across Pokemon, Breath of the Wild, and Elden Ring
+- **Category filtering** - Filter achievements by category (Intrigue, Pokemon, Quetes, Collection, Divers)
+- **Real-time search** - Search achievements with accent-insensitive and case-insensitive matching
+- **Progress tracking** - Visual progress bars showing completion percentage per game
+- **Admin authentication** - Magic link authentication via Resend for admin access
+- **Optimistic UI** - Instant feedback when toggling achievement completion
+
+## Tech Stack
+
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 16 (App Router) |
+| Styling | Tailwind CSS v4 |
+| Database | Neon PostgreSQL + Drizzle ORM |
+| Authentication | Magic Link via Resend |
+| Language | TypeScript |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+
+- pnpm (recommended)
+- Neon PostgreSQL database
+- Resend API key
+
+### Environment Variables
+
+Create a `.env.local` file:
+
+```env
+DATABASE_URL=your_neon_database_url
+RESEND_API_KEY=your_resend_api_key
+ADMIN_EMAIL=your_admin_email
+NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Install dependencies
+pnpm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Push database schema
+pnpm drizzle-kit push
 
-## Learn More
+# Run development server
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+succes-dex/
+├── app/                    # Next.js App Router pages
+│   ├── (auth)/            # Authentication routes
+│   ├── (games)/           # Game achievement pages
+│   └── api/               # API routes
+├── components/            # React components
+│   ├── achievements/      # Achievement-related components
+│   └── ui/               # Reusable UI components
+├── data/
+│   ├── achievements/      # Game achievement JSON files
+│   └── games.ts          # Game metadata
+├── lib/
+│   ├── auth/             # Authentication utilities
+│   └── db/               # Database client and schema
+├── actions/              # Server actions
+└── types/                # TypeScript type definitions
+```
 
-## Deploy on Vercel
+## Games
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Game | Achievements | Categories |
+|------|-------------|------------|
+| Pokemon | 113 | Intrigue, Pokemon, Quetes, Collection, Divers |
+| Breath of the Wild | 105 | Histoire, Divers, Completion, Challenge |
+| Elden Ring | 52 | Histoire, Combat, Exploration, Completion, Challenge, Divers |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
