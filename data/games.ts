@@ -3,7 +3,7 @@ import type { GameMeta, GameSlug } from '@/types/game';
 export const GAMES: GameMeta[] = [
   {
     slug: 'pokemon',
-    name: 'Pokemon',
+    name: 'Pokémon',
     fontFamily: 'var(--font-pokemon)',
     gradient: 'linear-gradient(135deg, #FFCB05 0%, #3D7DCA 50%, #003A70 100%)',
     backgroundImage: '/backgrounds/pokemon-bg.webp',
