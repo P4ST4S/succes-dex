@@ -70,6 +70,7 @@ export default function RootLayout({
       `}
     >
       <body className="font-sans antialiased">
+        <div className="decorative-bg" />
         <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
