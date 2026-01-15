@@ -1,38 +1,21 @@
-import { useState, useCallback } from "react";
+'use client';
 
-interface ToastOptions {
-  message: string;
-  type: "success" | "error";
-  duration?: number;
-}
+import { useContext } from 'react';
+import { ToastContext, type ToastType } from '@/components/providers/ToastProvider.client';
 
 export function useToast() {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
-  const [toastType, setToastType] = useState<"success" | "error">("success");
+  const context = useContext(ToastContext);
 
-  const showToastMessage = useCallback(
-    ({ message, type, duration = 3000 }: ToastOptions) => {
-      setToastMessage(message);
-      setToastType(type);
-      setShowToast(true);
-
-      setTimeout(() => {
-        setShowToast(false);
-      }, duration);
-    },
-    []
-  );
-
-  const hideToast = useCallback(() => {
-    setShowToast(false);
-  }, []);
+  if (!context) {
+    throw new Error('useToast must be used within ToastProvider');
+  }
 
   return {
-    showToast,
-    toastMessage,
-    toastType,
-    showToastMessage,
-    hideToast,
+    toast: (message: string, type: ToastType = 'info') => {
+      context.addToast({ message, type });
+    },
+    success: (message: string) => context.addToast({ message, type: 'success' }),
+    error: (message: string) => context.addToast({ message, type: 'error' }),
+    info: (message: string) => context.addToast({ message, type: 'info' }),
   };
 }

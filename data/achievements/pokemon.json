@@ -1,0 +1,88 @@
+{
+  "gameId": "pokemon",
+  "gameName": "Pokémon",
+  "version": "1.0.0",
+  "achievements": [
+    {
+      "id": "pkmn-001",
+      "name": "Premier Pas",
+      "description": "Choisir son premier Pokémon starter",
+      "category": "story",
+      "difficulty": "easy",
+      "points": 10
+    },
+    {
+      "id": "pkmn-002",
+      "name": "Collectionneur Novice",
+      "description": "Capturer 10 Pokémon différents",
+      "category": "collection",
+      "difficulty": "easy",
+      "points": 25
+    },
+    {
+      "id": "pkmn-003",
+      "name": "Premier Badge",
+      "description": "Obtenir son premier badge d'arène",
+      "category": "story",
+      "difficulty": "easy",
+      "points": 30
+    },
+    {
+      "id": "pkmn-004",
+      "name": "Évolution Réussie",
+      "description": "Faire évoluer un Pokémon pour la première fois",
+      "category": "collection",
+      "difficulty": "easy",
+      "points": 20
+    },
+    {
+      "id": "pkmn-005",
+      "name": "Explorateur",
+      "description": "Visiter 5 villes différentes",
+      "category": "exploration",
+      "difficulty": "easy",
+      "points": 25
+    },
+    {
+      "id": "pkmn-006",
+      "name": "Champion de la Ligue",
+      "description": "Battre la Ligue Pokémon pour la première fois",
+      "category": "story",
+      "difficulty": "medium",
+      "points": 100
+    },
+    {
+      "id": "pkmn-007",
+      "name": "Maître des 8 Badges",
+      "description": "Obtenir les 8 badges d'arène",
+      "category": "story",
+      "difficulty": "medium",
+      "points": 150
+    },
+    {
+      "id": "pkmn-008",
+      "name": "Shiny Inattendu",
+      "description": "Rencontrer un Pokémon shiny sauvage",
+      "category": "secret",
+      "difficulty": "legendary",
+      "points": 200,
+      "hidden": true
+    },
+    {
+      "id": "pkmn-009",
+      "name": "Pokédex Complet",
+      "description": "Compléter le Pokédex régional",
+      "category": "collection",
+      "difficulty": "hard",
+      "points": 300
+    },
+    {
+      "id": "pkmn-010",
+      "name": "Légende Capturée",
+      "description": "Capturer un Pokémon légendaire",
+      "category": "challenge",
+      "difficulty": "hard",
+      "points": 150
+    }
+  ]
+}

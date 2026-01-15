@@ -1,26 +1,55 @@
-import type { Metadata } from "next";
-import { Press_Start_2P } from "next/font/google";
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { UserProvider } from "@/contexts/UserContext";
-import "./globals.css";
+import type { Metadata, Viewport } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
+import { ToastProvider } from '@/components/providers/ToastProvider.client';
+import './globals.css';
 
-const pressStart = Press_Start_2P({
-  weight: "400",
-  variable: "--font-press-start",
-  subsets: ["latin"],
-  display: "swap",
+// System fonts (Google)
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+  display: 'swap',
 });
 
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+  display: 'swap',
+});
+
+// Game-specific fonts (local)
+const pokemonFont = localFont({
+  src: '../public/fonts/Pokemon.ttf',
+  variable: '--font-pokemon-custom',
+  display: 'swap',
+  preload: true,
+});
+
+const zeldaFont = localFont({
+  src: '../public/fonts/BOTW.otf',
+  variable: '--font-zelda-custom',
+  display: 'swap',
+  preload: true,
+});
+
+const eldenFont = localFont({
+  src: '../public/fonts/EldenRing.otf',
+  variable: '--font-elden-custom',
+  display: 'swap',
+  preload: true,
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#5fcaee',
+};
+
 export const metadata: Metadata = {
-  title: "Succes Pokemon Heartgold & Soulsilver",
-  description:
-    "Succes Pokemon Heartgold & Soulsilver - Challenge run des succès créés par Josplay, pour Pokémon Heartgold & Soulsilver. Chaque succès peut être validé en respectant les conditions indiquées.",
-  metadataBase: new URL("https://mii-achievements.local"),
+  title: 'Succès Dex',
+  description: 'Suivez la progression des succès gaming à travers Pokémon, Breath of the Wild et Elden Ring',
   icons: {
-    icon: "/icon.jpg",
-    shortcut: "/icon.jpg",
-    apple: "/icon.jpg",
+    icon: '/favicon.ico',
   },
 };
 
@@ -30,13 +59,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={`${pressStart.variable} bg-transparent text-mii-ink antialiased`}>
-        <UserProvider>
-          {children}
-        </UserProvider>
-        <Analytics />
-        <SpeedInsights />
+    <html
+      lang="fr"
+      className={`
+        ${geistSans.variable}
+        ${geistMono.variable}
+        ${pokemonFont.variable}
+        ${zeldaFont.variable}
+        ${eldenFont.variable}
+      `}
+    >
+      <body className="font-sans antialiased">
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html>
   );
